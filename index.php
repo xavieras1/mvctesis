@@ -31,48 +31,48 @@ for($i=0;$i<sizeof($rows);$i++)
 	$areasText.=";".$rows[$i]['id'].":".$rows[$i]['area'];
 
 // customizing columns
-$col = array();
-$col["title"] = "CARGO"; // caption of column
-$col["name"] = "nombre"; // grid column name, must be exactly same as returned column-name from sql (tablefield or field-alias) 
-$col["width"] = "60";
-$col["editable"] = true;
-$cols[] = $col;		
+$cargoCol = array();
+$cargoCol["title"] = "CARGO"; // caption of column
+$cargoCol["name"] = "nombre"; // grid column name, must be exactly same as returned column-name from sql (tablefield or field-alias) 
+$cargoCol["width"] = "60";
+$cargoCol["editable"] = true;
+$cargoCols[] = $cargoCol;		
 
-$col = array();
-$col["title"] = "DESCRIPCIÓN";
-$col["name"] = "descripcion";
-$col["editable"] = true;
-$col["width"] = "100";
-$col["edittype"] = "textarea"; // render as textarea on edit
-$cols[] = $col;
+$cargoCol = array();
+$cargoCol["title"] = "DESCRIPCIÓN";
+$cargoCol["name"] = "descripcion";
+$cargoCol["editable"] = true;
+$cargoCol["width"] = "100";
+$cargoCol["edittype"] = "textarea"; // render as textarea on edit
+$cargoCols[] = $cargoCol;
 
-$col = array();
-$col["title"] = "ÁREA";
-$col["name"] = "area_id";
-$col["editable"] = true;
-$col["edittype"] = "select"; // render as select
-$col["hidden"] = true;
-$col["editrules"] = array("required"=>true, "edithidden"=>true); // and is required
-$col["editoptions"] = array("value"=>substr($areasText, 1));
+$cargoCol = array();
+$cargoCol["title"] = "ÁREA";
+$cargoCol["name"] = "area_id";
+$cargoCol["editable"] = true;
+$cargoCol["edittype"] = "select"; // render as select
+$cargoCol["hidden"] = true;
+$cargoCol["editrules"] = array("required"=>true, "edithidden"=>true); // and is required
+$cargoCol["editoptions"] = array("value"=>substr($areasText, 1));
+$cargoCols[] = $cargoCol;
 
-$cols[] = $col;
-$col = array();
-$col["title"] = "ÁREA";
-$col["name"] = "area";
-$col["editable"] = false;
-$col["edittype"] = "select"; // render as select
-$col["editoptions"] = array("value"=>substr($areasText, 1));
-$cols[] = $col;
+$cargoCol = array();
+$cargoCol["title"] = "ÁREA";
+$cargoCol["name"] = "area";
+$cargoCol["editable"] = false;
+$cargoCol["edittype"] = "select"; // render as select
+$cargoCol["editoptions"] = array("value"=>substr($areasText, 1));
+$cargoCols[] = $cargoCol;
 
 
 
-$grid["autowidth"] = true; // expand grid to screen width
-$grid["rowNum"] = 10;
+$cargoGrid["autowidth"] = true; // expand grid to screen width
+$cargoGrid["rowNum"] = 10;
 // export PDF file
 // export to excel parameters
 //$grid["export"] = array("format"=>"pdf", "filename"=>"my-file", "heading"=>"Cargos por Area", "orientation"=>"landscape");
 
-$cargos->set_options($grid);
+$cargos->set_options($cargoGrid);
 
 $cargos->set_actions(array(	
 						"add"=>true, // allow/disallow add
@@ -91,63 +91,63 @@ $cargos->select_command = "SELECT * FROM (SELECT c.nombre, c.descripcion, c.area
 $cargos->table = "cargo";
 
 // pass the cooked columns to grid
-$cargos->set_columns($cols);
+$cargos->set_columns($cargoCols);
 
 // generate grid output, with unique grid name as 'list1'
 $cargoOut = $cargos->render("cargo");
 
 //ETIQUETA CENTROS
 // customizing columns
-$col = array();
-$col["title"] = "NOMBRE"; // caption of column
-$col["name"] = "centro"; // grid column name, must be exactly same as returned column-name from sql (tablefield or field-alias)
-$col["editable"] = true;
-$cols[] = $col;		
+$centroCol = array();
+$centroCol["title"] = "NOMBRE"; // caption of column
+$centroCol["name"] = "centro"; // grid column name, must be exactly same as returned column-name from sql (tablefield or field-alias)
+$centroCol["editable"] = true;
+$centroCols[] = $centroCol;		
 
-$col = array();
-$col["title"] = "DESCRIPCIÓN";
-$col["name"] = "descripcion";
-$col["editable"] = true;
-$col["edittype"] = "textarea"; // render as textarea on edit
-$cols[] = $col;
+$centroCol = array();
+$centroCol["title"] = "DESCRIPCIÓN";
+$centroCol["name"] = "descripcion";
+$centroCol["editable"] = true;
+$centroCol["edittype"] = "textarea"; // render as textarea on edit
+$centroCols[] = $centroCol;
 
-$col = array();
-$col["title"] = "CREACIÓN";
-$col["name"] = "fecha_creacion";
-$col["editable"] = true;
-$col["editoptions"] = array("size"=>20); // with default display of textbox with size 20
-$col["formatter"] = "date"; // format as date
-$col["align"] = "center";
-$cols[] = $col;
+$centroCol = array();
+$centroCol["title"] = "CREACIÓN";
+$centroCol["name"] = "fecha_creacion";
+$centroCol["editable"] = true;
+$centroCol["editoptions"] = array("size"=>20); // with default display of textbox with size 20
+$centroCol["formatter"] = "date"; // format as date
+$centroCol["align"] = "center";
+$centroCols[] = $centroCol;
 
-$col = array();
-$col["title"] = "TELÉFONO";
-$col["name"] = "telefono";
-$col["editable"] = true;
-$col["editrules"] = array("required"=>false,"number"=>true);
-$col["align"] = "center";
-$cols[] = $col;
+$centroCol = array();
+$centroCol["title"] = "TELÉFONO";
+$centroCol["name"] = "telefono";
+$centroCol["editable"] = true;
+$centroCol["editrules"] = array("required"=>false,"number"=>true);
+$centroCol["align"] = "center";
+$centroCols[] = $centroCol;
 
-$col = array();
-$col["title"] = "DIRECCIÓN";
-$col["name"] = "direccion";
-$col["width"] = "250";
-$col["editable"] = true;
-$col["edittype"] = "textarea"; // render as textarea on edit
-$cols[] = $col;
+$centroCol = array();
+$centroCol["title"] = "DIRECCIÓN";
+$centroCol["name"] = "direccion";
+$centroCol["width"] = "250";
+$centroCol["editable"] = true;
+$centroCol["edittype"] = "textarea"; // render as textarea on edit
+$centroCols[] = $centroCol;
 
-$col = array();
-$col["title"] = "EMAIL";
-$col["name"] = "email";
-$col["editable"] = true;
-$col["editrules"] = array("required"=>false,"email"=>true);
-$cols[] = $col;
+$centroCol = array();
+$centroCol["title"] = "EMAIL";
+$centroCol["name"] = "email";
+$centroCol["editable"] = true;
+$centroCol["editrules"] = array("required"=>false,"email"=>true);
+$centroCols[] = $centroCol;
 
 $centros = new jqgrid();
 
-$grid["autowidth"] = true; // expand grid to screen width
-$grid["rowNum"] = 10;
-$centros->set_options($grid);
+$centroGrid["autowidth"] = true; // expand grid to screen width
+$centroGrid["rowNum"] = 10;
+$centros->set_options($centroGrid);
 
 $centros->set_actions(array(	
 						"add"=>true, // allow/disallow add
@@ -165,7 +165,7 @@ $centros->select_command = "SELECT * FROM (SELECT c.centro, c.descripcion, c.fec
 $centros->table = "centro";
 
 // pass the cooked columns to grid
-$centros->set_columns($cols);
+$centros->set_columns($centroCols);
 
 // generate grid output, with unique grid name as 'list1'
 $centroOut = $centros->render("centro");
@@ -184,61 +184,61 @@ for($i=0;$i<sizeof($rows);$i++)
 	$centrosText.=";".$rows[$i]['id'].":".$rows[$i]['centro'];
 
 // customizing columns
-$col = array();
-$col["title"] = "CENTRO APOSTÓLICO";
-$col["name"] = "centro_id";
-$col["editable"] = true;
-$col["edittype"] = "select"; // render as select
-$col["hidden"] = true;
-$col["editrules"] = array("required"=>true, "edithidden"=>true); // and is required
-$col["editoptions"] = array("value"=>substr($centrosText, 1));
-$cols[] = $col;
+$permanenciaCol = array();
+$permanenciaCol["title"] = "CENTRO APOSTÓLICO";
+$permanenciaCol["name"] = "centro_id";
+$permanenciaCol["editable"] = true;
+$permanenciaCol["edittype"] = "select"; // render as select
+$permanenciaCol["hidden"] = true;
+$permanenciaCol["editrules"] = array("required"=>true, "edithidden"=>true); // and is required
+$permanenciaCol["editoptions"] = array("value"=>substr($centrosText, 1));
+$permanenciaCols[] = $permanenciaCol;
 
-$col = array();
-$col["title"] = "CENTRO APOSTÓLICO";
-$col["name"] = "centro";
-$col["editable"] = false;
-$col["edittype"] = "select"; // render as select
-$col["editoptions"] = array("value"=>substr($centrosText, 1));
-$cols[] = $col;
+$permanenciaCol = array();
+$permanenciaCol["title"] = "CENTRO APOSTÓLICO";
+$permanenciaCol["name"] = "centro";
+$permanenciaCol["editable"] = false;
+$permanenciaCol["edittype"] = "select"; // render as select
+$permanenciaCol["editoptions"] = array("value"=>substr($centrosText, 1));
+$permanenciaCols[] = $permanenciaCol;
 
-$col = array();
-$col["title"] = "AGRUPACIÓN"; // caption of column
-$col["name"] = "nombre"; // grid column name, must be exactly same as returned column-name from sql (tablefield or field-alias)
-$col["editable"] = true;
-$cols[] = $col;		
+$permanenciaCol = array();
+$permanenciaCol["title"] = "AGRUPACIÓN"; // caption of column
+$permanenciaCol["name"] = "nombre"; // grid column name, must be exactly same as returned column-name from sql (tablefield or field-alias)
+$permanenciaCol["editable"] = true;
+$permanenciaCols[] = $permanenciaCol;		
 
-$col = array();
-$col["title"] = "DESCRIPCIÓN";
-$col["name"] = "descripcion";
-$col["editable"] = true;
-$col["edittype"] = "textarea"; // render as textarea on edit
-$cols[] = $col;
+$permanenciaCol = array();
+$permanenciaCol["title"] = "DESCRIPCIÓN";
+$permanenciaCol["name"] = "descripcion";
+$permanenciaCol["editable"] = true;
+$permanenciaCol["edittype"] = "textarea"; // render as textarea on edit
+$permanenciaCols[] = $permanenciaCol;
 
-$col = array();
-$col["title"] = "DESDE";
-$col["name"] = "fecha_creacion";
-$col["editable"] = true;
-$col["editoptions"] = array("size"=>20); // with default display of textbox with size 20
-$col["formatter"] = "date"; // format as date
-$col["align"] = "center";
-$cols[] = $col;
+$permanenciaCol = array();
+$permanenciaCol["title"] = "DESDE";
+$permanenciaCol["name"] = "fecha_creacion";
+$permanenciaCol["editable"] = true;
+$permanenciaCol["editoptions"] = array("size"=>20); // with default display of textbox with size 20
+$permanenciaCol["formatter"] = "date"; // format as date
+$permanenciaCol["align"] = "center";
+$permanenciaCols[] = $permanenciaCol;
 
-$col = array();
-$col["title"] = "HASTA";
-$col["name"] = "fecha_fin";
-$col["editable"] = true;
-$col["editoptions"] = array("size"=>20); // with default display of textbox with size 20
-$col["formatter"] = "date"; // format as date
-$col["align"] = "center";
-$cols[] = $col;
+$permanenciaCol = array();
+$permanenciaCol["title"] = "HASTA";
+$permanenciaCol["name"] = "fecha_fin";
+$permanenciaCol["editable"] = true;
+$permanenciaCol["editoptions"] = array("size"=>20); // with default display of textbox with size 20
+$permanenciaCol["formatter"] = "date"; // format as date
+$permanenciaCol["align"] = "center";
+$permanenciaCols[] = $permanenciaCol;
 
-$grid["autowidth"] = true; // expand grid to screen width
-$grid["rowNum"] = 10;
+$permanenciaGrid["autowidth"] = true; // expand grid to screen width
+$permanenciaGrid["rowNum"] = 10;
 // $grid["export"] = array("format"=>"pdf", "filename"=>"my-file", "sheetname"=>"test");
 // $grid["export"]["paged"] = "1";
 
-$permanecia->set_options($grid);
+$permanecia->set_options($permanenciaGrid);
 
 $permanecia->set_actions(array(	
 						"add"=>true, // allow/disallow add
@@ -257,207 +257,207 @@ $permanecia->select_command = "SELECT * FROM (SELECT p.centro_id, c.centro, p.no
 $permanecia->table = "instancia_permanencia";
 
 // pass the cooked columns to grid
-$permanecia->set_columns($cols);
+$permanecia->set_columns($permanenciaCols);
 
 // generate grid output, with unique grid name as 'list1'
 $permanenciaOut = $permanecia->render("asociaciones");
 
 // ETIQUETA MIEMBROS
 // customizing columns
-$col = array();
-$col["title"] = "ID"; // caption of column
-$col["name"] = "id"; // grid column name, must be exactly same as returned column-name from sql (tablefield or field-alias) 
-$col["width"] = "70";
-$col["editable"] = false;
-$col["align"] = "center";
-$cols[] = $col;		
+$miembrosCol = array();
+$miembrosCol["title"] = "ID"; // caption of column
+$miembrosCol["name"] = "id"; // grid column name, must be exactly same as returned column-name from sql (tablefield or field-alias) 
+$miembrosCol["width"] = "70";
+$miembrosCol["editable"] = false;
+$miembrosCol["align"] = "center";
+$miembrosCols[] = $miembrosCol;		
 
-$col = array();
-$col["title"] = "FOTO";
-$col["name"] = "foto";
-$col["editable"] = true;
-$col["align"] = "center";
-$col["formatter"] = "image"; // format as image -- if data is image url e.g. http://<domain>/test.jpg
-$col["formatoptions"] = array("width"=>'80',"height"=>'100'); // image width / height etc
-$col["edittype"] = "file"; // render as file
-$col["upload_dir"] = "temp"; // upload here
-$cols[] = $col;
+$miembrosCol = array();
+$miembrosCol["title"] = "FOTO";
+$miembrosCol["name"] = "foto";
+$miembrosCol["editable"] = true;
+$miembrosCol["align"] = "center";
+$miembrosCol["formatter"] = "image"; // format as image -- if data is image url e.g. http://<domain>/test.jpg
+$miembrosCol["formatoptions"] = array("width"=>'80',"height"=>'100'); // image width / height etc
+$miembrosCol["edittype"] = "file"; // render as file
+$miembrosCol["upload_dir"] = "temp"; // upload here
+$miembrosCols[] = $miembrosCol;
 
-$col = array();
-$col["title"] = "NOMBRE";
-$col["name"] = "nombre";
-$col["editable"] = true;
-$col["width"] = "130";
-$col["align"] = "center";
-$col["editrules"] = array("required"=>true, "edithidden"=>true); // and is required
-$cols[] = $col;
+$miembrosCol = array();
+$miembrosCol["title"] = "NOMBRE";
+$miembrosCol["name"] = "nombre";
+$miembrosCol["editable"] = true;
+$miembrosCol["width"] = "130";
+$miembrosCol["align"] = "center";
+$miembrosCol["editrules"] = array("required"=>true, "edithidden"=>true); // and is required
+$miembrosCols[] = $miembrosCol;
 
-$col = array();
-$col["title"] = "APELLIDO";
-$col["name"] = "apellido";
-$col["editable"] = true;
-$col["width"] = "130";
-$col["align"] = "center";
-$col["editrules"] = array("required"=>true, "edithidden"=>true); // and is required
-$cols[] = $col;
+$miembrosCol = array();
+$miembrosCol["title"] = "APELLIDO";
+$miembrosCol["name"] = "apellido";
+$miembrosCol["editable"] = true;
+$miembrosCol["width"] = "130";
+$miembrosCol["align"] = "center";
+$miembrosCol["editrules"] = array("required"=>true, "edithidden"=>true); // and is required
+$miembrosCols[] = $miembrosCol;
 
-$col = array();
-$col["title"] = "CIUDAD";
-$col["name"] = "ciudad";
-$col["editable"] = true;
-$col["edittype"] = "select"; // render as select
-$col["editoptions"] = array("value"=>'Santiago de Guayaquil:Santiago de Guayaquil;San Pablo de Manta:San Pablo de Manta;San Francisco de Quito:San Francisco de Quito');
-$col["align"] = "center";
-$col["editrules"] = array("required"=>true, "edithidden"=>true); // and is required
-$cols[] = $col;
+$miembrosCol = array();
+$miembrosCol["title"] = "CIUDAD";
+$miembrosCol["name"] = "ciudad";
+$miembrosCol["editable"] = true;
+$miembrosCol["edittype"] = "select"; // render as select
+$miembrosCol["editoptions"] = array("value"=>'Santiago de Guayaquil:Santiago de Guayaquil;San Pablo de Manta:San Pablo de Manta;San Francisco de Quito:San Francisco de Quito');
+$miembrosCol["align"] = "center";
+$miembrosCol["editrules"] = array("required"=>true, "edithidden"=>true); // and is required
+$miembrosCols[] = $miembrosCol;
 
-$col = array();
-$col["title"] = "SEXO";
-$col["name"] = "sexo";
-$col["editable"] = true;
-$col["align"] = "center";
-$col["edittype"] = "select"; // render as select
-$col["editoptions"] = array("value"=>'hombre:hombre;mujer:mujer');
-$col["hidden"] = true;
-$col["editrules"] = array("required"=>true, "edithidden"=>true); // and is required
-$cols[] = $col;
+$miembrosCol = array();
+$miembrosCol["title"] = "SEXO";
+$miembrosCol["name"] = "sexo";
+$miembrosCol["editable"] = true;
+$miembrosCol["align"] = "center";
+$miembrosCol["edittype"] = "select"; // render as select
+$miembrosCol["editoptions"] = array("value"=>'hombre:hombre;mujer:mujer');
+$miembrosCol["hidden"] = true;
+$miembrosCol["editrules"] = array("required"=>true, "edithidden"=>true); // and is required
+$miembrosCols[] = $miembrosCol;
 
-$col = array();
-$col["title"] = "EDAD";
-$col["name"] = "edad";
-$col["align"] = "center";
-$col["editable"] = true;
-$col["editrules"] = array("number"=>true);
-$cols[] = $col;
+$miembrosCol = array();
+$miembrosCol["title"] = "EDAD";
+$miembrosCol["name"] = "edad";
+$miembrosCol["align"] = "center";
+$miembrosCol["editable"] = true;
+$miembrosCol["editrules"] = array("number"=>true);
+$miembrosCols[] = $miembrosCol;
 
-$col = array();
-$col["title"] = "CUMPLEAÑOS";
-$col["name"] = "fecha_nacimiento";
-$col["editable"] = true;
-$col["width"] = "190";
-$col["editoptions"] = array("size"=>20); // with default display of textbox with size 20
-$col["formatter"] = "date"; // format as date
-$col["align"] = "center";
-$cols[] = $col;
+$miembrosCol = array();
+$miembrosCol["title"] = "CUMPLEAÑOS";
+$miembrosCol["name"] = "fecha_nacimiento";
+$miembrosCol["editable"] = true;
+$miembrosCol["width"] = "190";
+$miembrosCol["editoptions"] = array("size"=>20); // with default display of textbox with size 20
+$miembrosCol["formatter"] = "date"; // format as date
+$miembrosCol["align"] = "center";
+$miembrosCols[] = $miembrosCol;
 
-$col = array();
-$col["title"] = "DOMICILIO";
-$col["name"] = "domicilio";
-$col["width"] = "250";
-$col["editable"] = true;
-$col["edittype"] = "textarea"; // render as textarea on edit
-$col["align"] = "center";
-$cols[] = $col;
+$miembrosCol = array();
+$miembrosCol["title"] = "DOMICILIO";
+$miembrosCol["name"] = "domicilio";
+$miembrosCol["width"] = "250";
+$miembrosCol["editable"] = true;
+$miembrosCol["edittype"] = "textarea"; // render as textarea on edit
+$miembrosCol["align"] = "center";
+$miembrosCols[] = $miembrosCol;
 
-$col = array();
-$col["title"] = "NIVEL DE ESTUDIO";
-$col["name"] = "nivel_estudio";
-$col["editable"] = true;
-$col["edittype"] = "select"; // render as select
-$col["align"] = "center";
-$col["editoptions"] = array("value"=>'primaria:primaria;secundaria:secundaria;universitario:universitario;profesional:profesional');
-$cols[] = $col;
+$miembrosCol = array();
+$miembrosCol["title"] = "NIVEL DE ESTUDIO";
+$miembrosCol["name"] = "nivel_estudio";
+$miembrosCol["editable"] = true;
+$miembrosCol["edittype"] = "select"; // render as select
+$miembrosCol["align"] = "center";
+$miembrosCol["editoptions"] = array("value"=>'primaria:primaria;secundaria:secundaria;universitario:universitario;profesional:profesional');
+$miembrosCols[] = $miembrosCol;
 
-$col = array();
-$col["title"] = "INSTITUCIÓN";
-$col["name"] = "institucion";
-$col["editable"] = true;
-$col["align"] = "center";
-$cols[] = $col;
+$miembrosCol = array();
+$miembrosCol["title"] = "INSTITUCIÓN";
+$miembrosCol["name"] = "institucion";
+$miembrosCol["editable"] = true;
+$miembrosCol["align"] = "center";
+$miembrosCols[] = $miembrosCol;
 
-$col = array();
-$col["title"] = "TELÉFONO";
-$col["name"] = "telefono";
-$col["editable"] = true;
-$col["align"] = "center";
-$col["editrules"] = array("number"=>true);
-$cols[] = $col;
+$miembrosCol = array();
+$miembrosCol["title"] = "TELÉFONO";
+$miembrosCol["name"] = "telefono";
+$miembrosCol["editable"] = true;
+$miembrosCol["align"] = "center";
+$miembrosCol["editrules"] = array("number"=>true);
+$miembrosCols[] = $miembrosCol;
 
-$col = array();
-$col["title"] = "CELL CLARO";
-$col["name"] = "celular_claro";
-$col["editable"] = true;
-$col["align"] = "center";
-$col["editrules"] = array("number"=>true);
-$cols[] = $col;
+$miembrosCol = array();
+$miembrosCol["title"] = "CELL CLARO";
+$miembrosCol["name"] = "celular_claro";
+$miembrosCol["editable"] = true;
+$miembrosCol["align"] = "center";
+$miembrosCol["editrules"] = array("number"=>true);
+$miembrosCols[] = $miembrosCol;
 
-$col = array();
-$col["title"] = "CELL MOVISTAR";
-$col["name"] = "celular_movistar";
-$col["editable"] = true;
-$col["align"] = "center";
-$col["editrules"] = array("number"=>true);
-$cols[] = $col;
+$miembrosCol = array();
+$miembrosCol["title"] = "CELL MOVISTAR";
+$miembrosCol["name"] = "celular_movistar";
+$miembrosCol["editable"] = true;
+$miembrosCol["align"] = "center";
+$miembrosCol["editrules"] = array("number"=>true);
+$miembrosCols[] = $miembrosCol;
 
-$col = array();
-$col["title"] = "EMAIL";
-$col["name"] = "email";
-$col["editable"] = true;
-$col["align"] = "center";
-$col["editrules"] = array("email"=>true); 
-$cols[] = $col;
+$miembrosCol = array();
+$miembrosCol["title"] = "EMAIL";
+$miembrosCol["name"] = "email";
+$miembrosCol["editable"] = true;
+$miembrosCol["align"] = "center";
+$miembrosCol["editrules"] = array("email"=>true); 
+$miembrosCols[] = $miembrosCol;
 
-$col = array();
-$col["title"] = "FACEBOOK";
-$col["name"] = "facebook";
-$col["editable"] = true;
-$col["align"] = "center";
-$cols[] = $col;
+$miembrosCol = array();
+$miembrosCol["title"] = "FACEBOOK";
+$miembrosCol["name"] = "facebook";
+$miembrosCol["editable"] = true;
+$miembrosCol["align"] = "center";
+$miembrosCols[] = $miembrosCol;
 
-$col = array();
-$col["title"] = "TWITTER";
-$col["name"] = "twitter";
-$col["editable"] = true;
-$col["align"] = "center";
-$cols[] = $col;
+$miembrosCol = array();
+$miembrosCol["title"] = "TWITTER";
+$miembrosCol["name"] = "twitter";
+$miembrosCol["editable"] = true;
+$miembrosCol["align"] = "center";
+$miembrosCols[] = $miembrosCol;
 
-$col = array();
-$col["title"] = "RELACIÓN";
-$col["name"] = "relacion";
-$col["editable"] = true;
-$col["edittype"] = "select"; // render as select
-$col["editoptions"] = array("value"=>'agrupado:agrupado;visitante:visitante');
-$col["align"] = "center";
-$cols[] = $col;
+$miembrosCol = array();
+$miembrosCol["title"] = "RELACIÓN";
+$miembrosCol["name"] = "relacion";
+$miembrosCol["editable"] = true;
+$miembrosCol["edittype"] = "select"; // render as select
+$miembrosCol["editoptions"] = array("value"=>'agrupado:agrupado;visitante:visitante');
+$miembrosCol["align"] = "center";
+$miembrosCols[] = $miembrosCol;
 
-$col = array();
-$col["title"] = "ESTADO";
-$col["name"] = "estado";
-$col["editable"] = true;
-$col["edittype"] = "select"; // render as select
-$col["editoptions"] = array("value"=>'activo:activo;pasivo:pasivo');
-$col["align"] = "center";
-$cols[] = $col;
+$miembrosCol = array();
+$miembrosCol["title"] = "ESTADO";
+$miembrosCol["name"] = "estado";
+$miembrosCol["editable"] = true;
+$miembrosCol["edittype"] = "select"; // render as select
+$miembrosCol["editoptions"] = array("value"=>'activo:activo;pasivo:pasivo');
+$miembrosCol["align"] = "center";
+$miembrosCols[] = $miembrosCol;
 
-$col = array();
-$col["title"] = "FECHA DE REGISTRO";
-$col["name"] = "fecha_registro";
-$col["editable"] = true;
-$col["editoptions"] = array("size"=>20); // with default display of textbox with size 20
-$col["formatter"] = "date"; // format as date
-$col["align"] = "center";
-$cols[] = $col;
+$miembrosCol = array();
+$miembrosCol["title"] = "FECHA DE REGISTRO";
+$miembrosCol["name"] = "fecha_registro";
+$miembrosCol["editable"] = true;
+$miembrosCol["editoptions"] = array("size"=>20); // with default display of textbox with size 20
+$miembrosCol["formatter"] = "date"; // format as date
+$miembrosCol["align"] = "center";
+$miembrosCols[] = $miembrosCol;
 
-$col = array();
-$col["title"] = "USUARIO";
-$col["name"] = "usuario";
-$col["editable"] = true;
-$col["align"] = "center";
-$cols[] = $col;
+$miembrosCol = array();
+$miembrosCol["title"] = "USUARIO";
+$miembrosCol["name"] = "usuario";
+$miembrosCol["editable"] = true;
+$miembrosCol["align"] = "center";
+$miembrosCols[] = $miembrosCol;
 
-$col = array();
-$col["title"] = "CONTRASEÑA";
-$col["name"] = "contrasena";
-$col["editable"] = true;
-$col["formatter"] = "password";
-$col["align"] = "center";
-$cols[] = $col;
+$miembrosCol = array();
+$miembrosCol["title"] = "CONTRASEÑA";
+$miembrosCol["name"] = "contrasena";
+$miembrosCol["editable"] = true;
+$miembrosCol["formatter"] = "password";
+$miembrosCol["align"] = "center";
+$miembrosCols[] = $miembrosCol;
 
 $miembros = new jqgrid();
 
-$grid["autowidth"] = true; // expand grid to screen width
-$grid["rowNum"] = 10;
-$miembros->set_options($grid);
+$miembrosGrid["autowidth"] = true; // expand grid to screen width
+$miembrosGrid["rowNum"] = 10;
+$miembros->set_options($miembrosGrid);
 
 $miembros->set_actions(array(	
 						"add"=>true, // allow/disallow add
@@ -474,121 +474,121 @@ $miembros->select_command = "SELECT * FROM (SELECT p.id, p.foto, p.nombre, p.ape
 $miembros->table = "persona";
 
 // pass the cooked columns to grid
-$miembros->set_columns($cols);
+$miembros->set_columns($miembrosCols);
 
 // generate grid output, with unique grid name as 'list1'
 $miembrosOut = $miembros->render("miembros");
 
 // ETIQUETA INSTANCIAS DESPLIEGUE
 // customizing columns
-$col = array();
-$col["title"] = "CENTRO APOSTÓLICO";
-$col["name"] = "centro_id";
-$col["editable"] = true;
-$col["edittype"] = "select"; // render as select
-$col["hidden"] = true;
-$col["editrules"] = array("required"=>true, "edithidden"=>true); // and is required
-$col["editoptions"] = array("value"=>'1:Virgen del Pilar;2:Nuestra Señora de la Reconciliación;3:Sagrada Familia;4:Madre del Peregrinar;5:Santa María de los Ríos;6:Madre de los Apóstoles');
-$cols[] = $col;
+$despliegueCol = array();
+$despliegueCol["title"] = "CENTRO APOSTÓLICO";
+$despliegueCol["name"] = "centro_id";
+$despliegueCol["editable"] = true;
+$despliegueCol["edittype"] = "select"; // render as select
+$despliegueCol["hidden"] = true;
+$despliegueCol["editrules"] = array("required"=>true, "edithidden"=>true); // and is required
+$despliegueCol["editoptions"] = array("value"=>'1:Virgen del Pilar;2:Nuestra Señora de la Reconciliación;3:Sagrada Familia;4:Madre del Peregrinar;5:Santa María de los Ríos;6:Madre de los Apóstoles');
+$despliegueCols[] = $despliegueCol;
 
-$col = array();
-$col["title"] = "CENTRO APOSTÓLICO";
-$col["name"] = "centro";
-$col["editable"] = false;
-$col["edittype"] = "select"; // render as select
-$col["editoptions"] = array("value"=>'1:Virgen del Pilar;2:Nuestra Señora de la Reconciliación;3:Sagrada Familia;4:Madre del Peregrinar;5:Santa María de los Ríos;6:Madre de los Apóstoles');
-$cols[] = $col;
+$despliegueCol = array();
+$despliegueCol["title"] = "CENTRO APOSTÓLICO";
+$despliegueCol["name"] = "centro";
+$despliegueCol["editable"] = false;
+$despliegueCol["edittype"] = "select"; // render as select
+$despliegueCol["editoptions"] = array("value"=>'1:Virgen del Pilar;2:Nuestra Señora de la Reconciliación;3:Sagrada Familia;4:Madre del Peregrinar;5:Santa María de los Ríos;6:Madre de los Apóstoles');
+$despliegueCols[] = $despliegueCol;
 
-$col = array();
-$col["title"] = "INSTANCIA"; // caption of column
-$col["name"] = "nombre"; // grid column name, must be exactly same as returned column-name from sql (tablefield or field-alias)
-$col["editable"] = true;
-$cols[] = $col;		
+$despliegueCol = array();
+$despliegueCol["title"] = "INSTANCIA"; // caption of column
+$despliegueCol["name"] = "nombre"; // grid column name, must be exactly same as returned column-name from sql (tablefield or field-alias)
+$despliegueCol["editable"] = true;
+$despliegueCols[] = $despliegueCol;		
 
-$col = array();
-$col["title"] = "DESCRIPCIÓN";
-$col["name"] = "descripcion";
-$col["editable"] = true;
-$col["edittype"] = "textarea"; // render as textarea on edit
-$cols[] = $col;
+$despliegueCol = array();
+$despliegueCol["title"] = "DESCRIPCIÓN";
+$despliegueCol["name"] = "descripcion";
+$despliegueCol["editable"] = true;
+$despliegueCol["edittype"] = "textarea"; // render as textarea on edit
+$despliegueCols[] = $despliegueCol;
 
-$col = array();
-$col["title"] = "DESDE";
-$col["name"] = "fecha_creacion";
-$col["editable"] = true;
-$col["editoptions"] = array("size"=>20); // with default display of textbox with size 20
-$col["formatter"] = "date"; // format as date
-$col["align"] = "center";
-$cols[] = $col;
+$despliegueCol = array();
+$despliegueCol["title"] = "DESDE";
+$despliegueCol["name"] = "fecha_creacion";
+$despliegueCol["editable"] = true;
+$despliegueCol["editoptions"] = array("size"=>20); // with default display of textbox with size 20
+$despliegueCol["formatter"] = "date"; // format as date
+$despliegueCol["align"] = "center";
+$despliegueCols[] = $despliegueCol;
 
-$col = array();
-$col["title"] = "HASTA";
-$col["name"] = "fecha_fin";
-$col["editable"] = true;
-$col["editoptions"] = array("size"=>20); // with default display of textbox with size 20
-$col["formatter"] = "date"; // format as date
-$col["align"] = "center";
-$cols[] = $col;
+$despliegueCol = array();
+$despliegueCol["title"] = "HASTA";
+$despliegueCol["name"] = "fecha_fin";
+$despliegueCol["editable"] = true;
+$despliegueCol["editoptions"] = array("size"=>20); // with default display of textbox with size 20
+$despliegueCol["formatter"] = "date"; // format as date
+$despliegueCol["align"] = "center";
+$despliegueCols[] = $despliegueCol;
 
-$col = array();
-$col["title"] = "HORARIO"; // caption of column
-$col["name"] = "horario"; // grid column name, must be exactly same as returned column-name from sql (tablefield or field-alias)
-$col["editable"] = true;
-$cols[] = $col;
+$despliegueCol = array();
+$despliegueCol["title"] = "HORARIO"; // caption of column
+$despliegueCol["name"] = "horario"; // grid column name, must be exactly same as returned column-name from sql (tablefield or field-alias)
+$despliegueCol["editable"] = true;
+$despliegueCols[] = $despliegueCol;
 
-$col = array();
-$col["title"] = "LUGAR"; // caption of column
-$col["name"] = "lugar"; // grid column name, must be exactly same as returned column-name from sql (tablefield or field-alias)
-$col["editable"] = true;
-$cols[] = $col;
+$despliegueCol = array();
+$despliegueCol["title"] = "LUGAR"; // caption of column
+$despliegueCol["name"] = "lugar"; // grid column name, must be exactly same as returned column-name from sql (tablefield or field-alias)
+$despliegueCol["editable"] = true;
+$despliegueCols[] = $despliegueCol;
 
-$col = array();
-$col["title"] = "COLABORACIÓN"; // caption of column
-$col["name"] = "colaboracion"; // grid column name, must be exactly same as returned column-name from sql (tablefield or field-alias)
-$col["editable"] = true;
-$cols[] = $col;
+$despliegueCol = array();
+$despliegueCol["title"] = "COLABORACIÓN"; // caption of column
+$despliegueCol["name"] = "colaboracion"; // grid column name, must be exactly same as returned column-name from sql (tablefield or field-alias)
+$despliegueCol["editable"] = true;
+$despliegueCols[] = $despliegueCol;
 
-$col = array();
-$col["title"] = "# TALLERES"; // caption of column
-$col["name"] = "numero_taller"; // grid column name, must be exactly same as returned column-name from sql (tablefield or field-alias)
-$col["editable"] = true;
-$cols[] = $col;
+$despliegueCol = array();
+$despliegueCol["title"] = "# TALLERES"; // caption of column
+$despliegueCol["name"] = "numero_taller"; // grid column name, must be exactly same as returned column-name from sql (tablefield or field-alias)
+$despliegueCol["editable"] = true;
+$despliegueCols[] = $despliegueCol;
 
-$col = array();
-$col["title"] = "CATEGORÍA"; // caption of column
-$col["name"] = "categoria"; // grid column name, must be exactly same as returned column-name from sql (tablefield or field-alias)
-$col["editable"] = true;
-$cols[] = $col;
+$despliegueCol = array();
+$despliegueCol["title"] = "CATEGORÍA"; // caption of column
+$despliegueCol["name"] = "categoria"; // grid column name, must be exactly same as returned column-name from sql (tablefield or field-alias)
+$despliegueCol["editable"] = true;
+$despliegueCols[] = $despliegueCol;
 
-$col = array();
-$col["title"] = "CONTENIDOS"; // caption of column
-$col["name"] = "contenidos"; // grid column name, must be exactly same as returned column-name from sql (tablefield or field-alias)
-$col["edittype"] = "textarea";
-$col["editable"] = true;
-$cols[] = $col;
+$despliegueCol = array();
+$despliegueCol["title"] = "CONTENIDOS"; // caption of column
+$despliegueCol["name"] = "contenidos"; // grid column name, must be exactly same as returned column-name from sql (tablefield or field-alias)
+$despliegueCol["edittype"] = "textarea";
+$despliegueCol["editable"] = true;
+$despliegueCols[] = $despliegueCol;
 
-$col = array();
-$col["title"] = "OBSERVACIONES"; // caption of column
-$col["name"] = "observaciones"; // grid column name, must be exactly same as returned column-name from sql (tablefield or field-alias)
-$col["edittype"] = "textarea";
-$col["editable"] = true;
-$cols[] = $col;
+$despliegueCol = array();
+$despliegueCol["title"] = "OBSERVACIONES"; // caption of column
+$despliegueCol["name"] = "observaciones"; // grid column name, must be exactly same as returned column-name from sql (tablefield or field-alias)
+$despliegueCol["edittype"] = "textarea";
+$despliegueCol["editable"] = true;
+$despliegueCols[] = $despliegueCol;
 
-$col = array();
-$col["title"] = "LISTA DE RECURSOS"; // caption of column
-$col["name"] = "lista_recursos"; // grid column name, must be exactly same as returned column-name from sql (tablefield or field-alias)
-$col["edittype"] = "textarea";
-$col["editable"] = true;
-$cols[] = $col;
+$despliegueCol = array();
+$despliegueCol["title"] = "LISTA DE RECURSOS"; // caption of column
+$despliegueCol["name"] = "lista_recursos"; // grid column name, must be exactly same as returned column-name from sql (tablefield or field-alias)
+$despliegueCol["edittype"] = "textarea";
+$despliegueCol["editable"] = true;
+$despliegueCols[] = $despliegueCol;
 
 $despliegue = new jqgrid();
 
-$grid["autowidth"] = true; // expand grid to screen width
-$grid["rowNum"] = 10;
+$despliegueGrid["autowidth"] = true; // expand grid to screen width
+$despliegueGrid["rowNum"] = 10;
 // $grid["export"] = array("format"=>"pdf", "filename"=>"my-file", "sheetname"=>"test");
 // $grid["export"]["paged"] = "1";
 
-$despliegue->set_options($grid);
+$despliegue->set_options($despliegueGrid);
 
 $despliegue->set_actions(array(	
 						"add"=>true, // allow/disallow add
@@ -607,7 +607,7 @@ $despliegue->select_command = "SELECT * FROM (SELECT d.centro_id, c.centro, d.no
 $despliegue->table = "instancia_despliegue";
 
 // pass the cooked columns to grid
-$despliegue->set_columns($cols);
+$despliegue->set_columns($despliegueCols);
 
 // generate grid output, with unique grid name as 'list1'
 $despliegueOut = $despliegue->render("despliegue");
