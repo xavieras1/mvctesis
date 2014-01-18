@@ -8,7 +8,7 @@
  */
  
 // set up DB
-$conn = mysql_connect("localhost", "root", "root");
+$conn = mysql_connect("localhost", "root", "");
 mysql_select_db("mvc");
 
 // set your db encoding -- for ascent chars (if required)

@@ -2,7 +2,7 @@
 <div id="logo">
   <a href="/main.php"><img src="img/logo_blanco.png" alt="Log MVC Ecuador" title="MvcSystem" /></a>
 </div>
-<div id="info">
+<!-- <div id="info">
   <?php
     print '<span id="titulo" ';
     if ($_SESSION["current_cargo"]['info']['cargo_id']==5) {
@@ -12,11 +12,11 @@
     }else{
       print 'class="permanencia'.$_SESSION["current_cargo"]['info']['permanencia_id'].'">'.$_SESSION["current_cargo"]['info']['permanencia_nombre'];
     }
-  ?>
+  ?> -->
 </span>
 <div id="profile">
   <a href="#"><div id="saludo">
-    <span><?php echo $_SESSION["user"]['name']?></span>
+  <!--   <span><?php echo $_SESSION["user"]['name']?></span> -->
   </div>
   <div id="cuentas" class="cuadros">
     <img src="img/btn_cuentas.png">

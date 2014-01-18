@@ -8,7 +8,7 @@
  */
  
 // set up DB
-$conn = mysql_connect("localhost:8888", "root", "root");
+$conn = mysql_connect("localhost", "root", "");
 mysql_select_db("mvc");
 
 // set your db encoding -- for ascent chars (if required)
@@ -147,4 +147,5 @@ $admindesp->set_columns($cols_des);
 $admindespOut= $admindesp->render("admindesp");
 
 echo $adminagrupaOut; //Display JQGrid $out
+echo "hola";
 ?>
