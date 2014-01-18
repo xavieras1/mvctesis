@@ -51,7 +51,7 @@ $permanenciaCols[] = $permanenciaCol;
 
 $permanenciaCol = array();
 $permanenciaCol["title"] = "AGRUPACIÓN"; // caption of column
-$permanenciaCol["name"] = "permanencia"; // grid column name, must be exactly same as returned column-name from sql (tablefield or field-alias)
+$permanenciaCol["name"] = "nombre"; // grid column name, must be exactly same as returned column-name from sql (tablefield or field-alias)
 $permanenciaCol["editable"] = true;
 $permanenciaCols[] = $permanenciaCol;		
 
@@ -97,7 +97,7 @@ $permanecia->set_actions(array(
 				);
 
 // you can provide custom SQL query to display data
-$permanecia->select_command = "SELECT * FROM (SELECT p.centro_id, c.centro, p.permanencia, p.descripcion, p.fecha_creacion, p.fecha_fin FROM instancia_permanencia p
+$permanecia->select_command = "SELECT * FROM (SELECT p.centro_id, c.centro, p.nombre, p.descripcion, p.fecha_creacion, p.fecha_fin FROM instancia_permanencia p
 						INNER JOIN centro c ON p.centro_id = c.id) o";
 
 // this db table will be used for add,edit,delete

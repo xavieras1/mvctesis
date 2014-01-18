@@ -21,6 +21,13 @@ include("inc/jqgrid_dist.php");
 // customizing columns
 $despliegueCol = array();
 $despliegueCol["title"] = "CENTRO APOSTÓLICO";
+$despliegueCol["name"] = "id";
+$despliegueCol["editable"] = false;
+$despliegueCol["hidden"] = false;
+$despliegueCols[] = $despliegueCol;
+
+$despliegueCol = array();
+$despliegueCol["title"] = "CENTRO APOSTÓLICO";
 $despliegueCol["name"] = "centro_id";
 $despliegueCol["editable"] = true;
 $despliegueCol["edittype"] = "select"; // render as select
@@ -40,6 +47,8 @@ $despliegueCols[] = $despliegueCol;
 $despliegueCol = array();
 $despliegueCol["title"] = "INSTANCIA"; // caption of column
 $despliegueCol["name"] = "nombre"; // grid column name, must be exactly same as returned column-name from sql (tablefield or field-alias)
+$despliegueCol["link"] = "miembrosinstancia.php?nombre={nombre}";
+$despliegueCol["classes"] = "clickDespliegue";
 $despliegueCol["editable"] = true;
 $despliegueCols[] = $despliegueCol;		
 
@@ -138,7 +147,7 @@ $despliegue->set_actions(array(
 				);
 
 // you can provide custom SQL query to display data
-$despliegue->select_command = "SELECT * FROM (SELECT d.centro_id, c.centro, d.nombre, d.descripcion, d.fecha_creacion, d.fecha_fin, d.horario, d.lugar, d.colaboracion, d.numero_taller, d.categoria, d.contenidos, d.observaciones, d.lista_recursos FROM instancia_despliegue d
+$despliegue->select_command = "SELECT * FROM (SELECT d.id, d.centro_id, c.centro, d.nombre, d.descripcion, d.fecha_creacion, d.fecha_fin, d.horario, d.lugar, d.colaboracion, d.numero_taller, d.categoria, d.contenidos, d.observaciones, d.lista_recursos FROM instancia_despliegue d
 						INNER JOIN centro c ON d.centro_id = c.id) o";
 
 // this db table will be used for add,edit,delete
@@ -150,5 +159,5 @@ $despliegue->set_columns($despliegueCols);
 // generate grid output, with unique grid name as 'list1'
 $despliegueOut = $despliegue->render("despliegue");
 
-echo $despliegueOut;  //Display JQGrid $out
+echo $despliegueOut;
 ?>

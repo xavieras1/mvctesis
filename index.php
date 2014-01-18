@@ -42,38 +42,6 @@
 </body>
 </html>
 <script type="text/javascript">
-
-function set_table(current){
-
-  if(current==="cargos"){
-    console.log("cargos");
-
-  }else if(current==="centros"){
-    $('#content').hide();
-    
-  }else if(current==="asociaciones"){
-    $('#content').hide();
-
-  }else if(current==="miembros"){    
-    $('#content').hide();
-
-  }else if(current==="despliegue"){    
-    $('#content').hide();
-
-  }else if(current==="adminagrupa"){    
-    $('#content').hide();
-
-  }else if(current==="admindesp"){    
-    $('#content').hide();
-
-  }else if(current==="admincargo"){    
-    $('#content').hide();
-      
-  }else{// #reportes
-    
-  }
-}
-
 $(document).ready(function(){
   
   /*************************************MENU**************************************/
@@ -89,7 +57,7 @@ $(document).ready(function(){
     $content = $($active.attr('href'));
 
     $('#content_title').text($active.first().text());
-    set_table($active.attr('href').substring(1));
+    $("#content").load($active.attr('href').substring(1)+".php");
 
     // Hide the remaining content
     $links.not($active).each(function () {
@@ -107,17 +75,14 @@ $(document).ready(function(){
       // Update the variables with the new link and content
       $active = $(this);
       $content = $($(this).attr('href'));
+      $importa = $(this).attr('href');
 
       // Make the tab active.
       $active.addClass('active');
       // $content.show();
-      //$("#main").load("editar_permiso.php");
-      //$content.load("centro.php");
-      console.log($(this).attr('href').substring(1)+".php");
       $("#content").load($(this).attr('href').substring(1)+".php");
 
       $('#content_title').text($active.first().text());
-      set_table($active.attr('href').substring(1));
 
       if($(this)==$('#btn_ver_perfil')){
         $('ul.roles').hide();
@@ -128,6 +93,15 @@ $(document).ready(function(){
       e.preventDefault();
     });
 
+  });
+  $('#content').change(function(){
+    console.log($active.attr('href'));
+    if($active.attr('href')=="despliegue")
+      console.log($( ".clickDespliegue" ).find( "a" ));
+      // $(".clickDespliegue a").click(function() {
+      //   console.log($(this).attr("href").substring(11));
+      //   // $("#content").load("miembrosinstancia.php?nombre="+$(this).attr("href").substring(11));
+      // });
   });
 });
 </script>
