@@ -18,6 +18,16 @@ mysql_query("SET NAMES 'utf8'");
 include("inc/jqgrid_dist.php");
 
 // ETIQUETA INSTANCIAS DESPLIEGUE
+// Centros Apostolicos obtenidas dinamicamente
+$resultc = mysql_query("SELECT * FROM centro");
+$rowsc = array();
+$centrosText="";
+while ($rowc = mysql_fetch_assoc($resultc))
+        $rowsc[]=$rowc;
+mysql_free_result($resultc);
+for($i=0;$i<sizeof($rowsc);$i++)
+        $centrosText.=";".$rowsc[$i]['id'].":".$rowsc[$i]['centro'];
+
 // customizing columns
 $despliegueCol = array();
 $despliegueCol["title"] = "CENTRO APOSTÓLICO";
@@ -33,7 +43,7 @@ $despliegueCol["editable"] = true;
 $despliegueCol["edittype"] = "select"; // render as select
 $despliegueCol["hidden"] = true;
 $despliegueCol["editrules"] = array("required"=>true, "edithidden"=>true); // and is required
-$despliegueCol["editoptions"] = array("value"=>'1:Virgen del Pilar;2:Nuestra Señora de la Reconciliación;3:Sagrada Familia;4:Madre del Peregrinar;5:Santa María de los Ríos;6:Madre de los Apóstoles');
+$despliegueCol["editoptions"] = array("value"=>substr($centrosText, 1));
 $despliegueCols[] = $despliegueCol;
 
 $despliegueCol = array();
@@ -41,7 +51,7 @@ $despliegueCol["title"] = "CENTRO APOSTÓLICO";
 $despliegueCol["name"] = "centro";
 $despliegueCol["editable"] = false;
 $despliegueCol["edittype"] = "select"; // render as select
-$despliegueCol["editoptions"] = array("value"=>'1:Virgen del Pilar;2:Nuestra Señora de la Reconciliación;3:Sagrada Familia;4:Madre del Peregrinar;5:Santa María de los Ríos;6:Madre de los Apóstoles');
+$despliegueCol["editoptions"] = array("value"=>substr($centrosText, 1));
 $despliegueCols[] = $despliegueCol;
 
 $despliegueCol = array();
