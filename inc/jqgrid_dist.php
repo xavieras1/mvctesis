@@ -16,8 +16,6 @@
  	var $V7ed201fa;
  	var $V82e89bfb;
  	var $events;
- 	var $sabido;
- 	var $sabido1;
  	var $rows;
  	function jqgrid($V874bee68 = null)	{ if (!isset($_SESSION) || !is_array($_SESSION)) session_start();$this->V82e89bfb= "mysql"; $Vff4a0084["datatype"] = "json";$Vff4a0084["rowNum"] = 20;$Vff4a0084["width"] = 900;$Vff4a0084["height"] = 350;$Vff4a0084["rowList"] = array(10,20,30);$Vff4a0084["viewrecords"] = true;$Vff4a0084["scrollrows"] = true; $Vff4a0084["url"] = "http://".$_SERVER["HTTP_HOST"].$_SERVER["REQUEST_URI"];$Vff4a0084["editurl"] = $Vff4a0084["url"];$Vff4a0084["cellurl"] = $Vff4a0084["url"];  $Vff4a0084["scroll"] = 0;$Vff4a0084["sortable"] = true;$Vff4a0084["cellEdit"] = false; $Vff4a0084["add_options"] = array("closeAfterAdd"=>true);$Vff4a0084["edit_options"] = array("closeAfterEdit"=>true); $this->options = $Vff4a0084;	  $this->actions["showhidecolumns"] = true;$this->actions["inlineadd"] = false;$this->actions["search"] = "";$this->actions["export"] = false;}
  	private function strip($V2063c160)	{ if(get_magic_quotes_gpc() != 0) { if(is_array($V2063c160))  if ( array_is_associative($V2063c160) ) { foreach( $V2063c160 as $V8ce4b16b=>$V9e3669d1) $Vafb0f4ba[$V8ce4b16b] = stripslashes($V9e3669d1);$V2063c160 = $Vafb0f4ba;  }  else  for($V363b122c = 0; $V363b122c < sizeof($V2063c160); $V363b122c++) $V2063c160[$V363b122c] = stripslashes($V2063c160[$V363b122c]);else $V2063c160 = stripslashes($V2063c160);}return $V2063c160;}
@@ -155,7 +153,7 @@
  			<div id="<?php echo $Vab930cbb."_pager"?>"></div> 
  			<script>
  			jQuery(document).ready(function(){
- 				<?php echo $this->F300015ed($Vab930cbb,$Vc68271a6);?> 
+ 				<?php echo $this->F300015ed($Vab930cbb,$Vc68271a6);?>
  			});
  			</script>
  			<?php 
