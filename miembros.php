@@ -8,7 +8,7 @@
  */
  
 // set up DB
-$conn = mysql_connect("localhost:8888", "root", "root");
+$conn = mysql_connect("localhost", "root", "");
 mysql_select_db("mvc");
 
 // set your db encoding -- for ascent chars (if required)
@@ -24,6 +24,7 @@ $miembrosCol["title"] = "ID"; // caption of column
 $miembrosCol["name"] = "id"; // grid column name, must be exactly same as returned column-name from sql (tablefield or field-alias) 
 $miembrosCol["width"] = "70";
 $miembrosCol["editable"] = false;
+$miembrosCol["hidden"] = true;
 $miembrosCol["align"] = "center";
 $miembrosCols[] = $miembrosCol;		
 

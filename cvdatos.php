@@ -17,7 +17,7 @@ mysql_query("SET NAMES 'utf8'");
 // include and create object
 include("inc/jqgrid_dist.php");
 
-$admindesp = new jqgrid();
+$cvdatos = new jqgrid();
 
 // Personas obtenidas dinamicamente
 $resultp = mysql_query("SELECT * FROM persona");
@@ -58,29 +58,12 @@ $col_des["hidden"] = true;
 $cols_des[] = $col_des;
 
 $col_des = array();
-$col_des["title"] = "PERSONA";
-$col_des["name"] = "persona_id";
-$col_des["editable"] = true;
-$col_des["edittype"] = "select"; // render as select
-$col_des["hidden"] = true;
-$col_des["editrules"] = array("required"=>true, "edithidden"=>true); // and is required
-$col_des["editoptions"] = array("value"=>substr($personasText, 1));
-$cols_des[] = $col_des;
-
-$col_des = array();
-$col_des["title"] = "PERSONA";
-$col_des["name"] = "nombre";
-$col_des["editable"] = false;
-$col_des["edittype"] = "select"; // render as select
-$col_des["editoptions"] = array("value"=>substr($personasText, 1));
-$cols_des[] = $col_des;
-
-$col_des = array();
 $col_des["title"] = "CENTRO APOSTÓLICO";
 $col_des["name"] = "centro_id";
 $col_des["editable"] = true;
 $col_des["edittype"] = "select"; // render as select
 $col_des["hidden"] = true;
+$col_cv["search"] = false;
 $col_des["editrules"] = array("required"=>true, "edithidden"=>true); // and is required
 $col_des["editoptions"] = array("value"=>substr($centrosText, 1));
 $cols_des[] = $col_des;
@@ -89,9 +72,35 @@ $col_des = array();
 $col_des["title"] = "CENTRO APOSTÓLICO";
 $col_des["name"] = "centro";
 $col_des["editable"] = false;
+$col_cv["search"] = false;
 $col_des["edittype"] = "select"; // render as select
 $col_des["editoptions"] = array("value"=>substr($centrosText, 1));
-$cols_des[] = $col_des;       
+$cols_des[] = $col_des;
+
+$col_des = array();
+$col_des["title"] = "CARGO";
+$col_des["name"] = "cargo_id";
+$col_des["editable"] = true;
+$col_des["edittype"] = "select"; // render as select
+$col_des["hidden"] = true;
+$col_des["editrules"] = array("required"=>true, "edithidden"=>true); // and is required
+$col_des["editoptions"] = array("value"=>substr($cargosText, 1));
+$cols_des[] = $col_des;
+
+$col_des = array();
+$col_des["title"] = "CARGO"; // caption of column
+$col_des["name"] = "cargo"; // grid column name, must be exactly same as returned column-name from sql (tablefield or field-alias)
+$col_des["editable"] = false;
+$col_des["edittype"] = "select"; // render as select
+$col_des["editoptions"] = array("value"=>substr($cargosText, 1));
+$cols_des[] = $col_des; 
+
+$col_des = array();
+$col_des["title"] = "INSTANCIA";
+$col_des["name"] = "instancia";
+$col_des["editable"] = false;
+
+$cols_des[] = $col_des;
 
 $col_des = array();
 $col_des["title"] = "DESDE";
@@ -114,9 +123,9 @@ $cols_des[] = $col_des;
 $grid_des["autowidth"] = true; // expand grid to screen width
 $grid_des["rowNum"] = 10;
 
-$admindesp->set_options($grid_des);
+$cvdatos->set_options($grid_des);
 
-$admindesp->set_actions(array(  
+$cvdatos->set_actions(array(  
             "add"=>true, // allow/disallow add
             "edit"=>true, // allow/disallow edit
             "delete"=>true, // allow/disallow delete
@@ -126,16 +135,16 @@ $admindesp->set_actions(array(
         );
 
 // you can provide custom SQL query to display data
-$admindesp->select_command = "SELECT * FROM (SELECT pcci.id, pcci.persona_id, p.nombre, pcci.centro_id, c.centro, pcci.instancia, pcci.fecha_creacion, pcci.fecha_fin FROM persona_centro_cargo_instancia pcci INNER JOIN persona p ON pcci.persona_id = p.id INNER JOIN centro c ON pcci.centro_id = c.id INNER JOIN instancia_despliegue d ON pcci.instancia = '".$_GET["nombre"]."') o";
+$cvdatos->select_command = "SELECT * FROM (SELECT pcci.id, pcci.centro_id, c.centro, pcci.cargo_id, ca.cargo, pcci.instancia, pcci.fecha_creacion, pcci.fecha_fin FROM persona_centro_cargo_instancia pcci INNER JOIN centro c ON pcci.centro_id = c.id INNER JOIN cargo ca ON pcci.cargo_id = ca.id INNER JOIN persona p ON pcci.persona_id = '".$_GET["id"]."') o";
 
 // this db table will be used for add,edit,delete
-$admindesp->table = "persona_centro_cargo_instancia";
+$cvdatos->table = "persona_centro_cargo_instancia";
 
 // pass the cooked columns to grid
-$admindesp->set_columns($cols_des);
+$cvdatos->set_columns($cols_des);
 
 // generate grid output, with unique grid name as 'list1'
-$admindespOut= $admindesp->render("admindesp");
+$cvdatosOut= $cvdatos->render("cvdatos");
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html>
@@ -170,7 +179,7 @@ $admindespOut= $admindesp->render("admindesp");
           <span id="content_title"></span>
         </div>
         <div id="content">
-        <?php echo $admindespOut; //Display JQGrid $out?>
+        <?php echo $cvdatosOut; //Display JQGrid $out?>
         </div>
       </div>
     </div>
@@ -219,7 +228,7 @@ $(document).ready(function(){
   });
   $('#content').change(function(){
     console.log($active.attr('href'));
-    if($active.attr('href')=="despliegue")
+    if($active.attr('href')=="cvdatos")
       console.log($( ".clickDespliegue" ).find( "a" ));
       // $(".clickDespliegue a").click(function() {
       //   console.log($(this).attr("href").substring(11));

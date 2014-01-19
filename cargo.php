@@ -8,7 +8,7 @@
  */
  
 // set up DB
-$conn = mysql_connect("localhost:8888", "root", "root");
+$conn = mysql_connect("localhost", "root", "");
 mysql_select_db("mvc");
 
 // set your db encoding -- for ascent chars (if required)
@@ -33,9 +33,10 @@ for($i=0;$i<sizeof($rows);$i++)
 // customizing columns
 $cargoCol = array();
 $cargoCol["title"] = "CARGO"; // caption of column
-$cargoCol["name"] = "nombre"; // grid column name, must be exactly same as returned column-name from sql (tablefield or field-alias) 
+$cargoCol["name"] = "cargo"; // grid column name, must be exactly same as returned column-name from sql (tablefield or field-alias) 
 $cargoCol["width"] = "60";
 $cargoCol["editable"] = true;
+$cargoCol["editrules"] = array("required"=>true);
 $cargoCols[] = $cargoCol;		
 
 $cargoCol = array();
@@ -64,10 +65,8 @@ $cargoCol["edittype"] = "select"; // render as select
 $cargoCol["editoptions"] = array("value"=>substr($areasText, 1));
 $cargoCols[] = $cargoCol;
 
-
-
 $cargoGrid["autowidth"] = true; // expand grid to screen width
-$cargoGrid["rowNum"] = 10;
+$cargoGrid["rowNum"] = 20;
 // export PDF file
 // export to excel parameters
 //$grid["export"] = array("format"=>"pdf", "filename"=>"my-file", "heading"=>"Cargos por Area", "orientation"=>"landscape");
@@ -84,7 +83,7 @@ $cargos->set_actions(array(
 				);
 
 // you can provide custom SQL query to display data
-$cargos->select_command = "SELECT * FROM (SELECT c.nombre, c.descripcion, c.area_id, a.area FROM cargo c
+$cargos->select_command = "SELECT * FROM (SELECT c.cargo, c.descripcion, c.area_id, a.area FROM cargo c
 						INNER JOIN area a ON c.area_id = a.id) o";
 
 // this db table will be used for add,edit,delete
