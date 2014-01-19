@@ -109,6 +109,7 @@ $col_des["editable"] = true;
 $col_des["editoptions"] = array("size"=>20); // with default display of textbox with size 20
 $col_des["formatter"] = "date"; // format as date
 $col_des["align"] = "center";
+$col_des["editrules"] = array("required"=>true);
 $cols_des[] = $col_des;
 
 $col_des = array();
@@ -146,6 +147,5 @@ $admindesp->set_columns($cols_des);
 // generate grid output, with unique grid name as 'list1'
 $admindespOut= $admindesp->render("admindesp");
 
-echo $adminagrupaOut; //Display JQGrid $out
-echo "hola";
+echo $admindespOut; //Display JQGrid $out
 ?>

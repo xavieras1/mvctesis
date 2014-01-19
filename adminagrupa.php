@@ -109,6 +109,7 @@ $col_aso["editable"] = true;
 $col_aso["editoptions"] = array("size"=>20); // with default display of textbox with size 20
 $col_aso["formatter"] = "date"; // format as date
 $col_aso["align"] = "center";
+$col_aso["editrules"] = array("required"=>true);
 $cols_aso[] = $col_aso;
 
 $col_aso = array();

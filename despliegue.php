@@ -30,10 +30,10 @@ for($i=0;$i<sizeof($rowsc);$i++)
 
 // customizing columns
 $despliegueCol = array();
-$despliegueCol["title"] = "CENTRO APOSTÓLICO";
+$despliegueCol["title"] = "ID";
 $despliegueCol["name"] = "id";
 $despliegueCol["editable"] = false;
-$despliegueCol["hidden"] = false;
+$despliegueCol["hidden"] = true;
 $despliegueCols[] = $despliegueCol;
 
 $despliegueCol = array();
@@ -59,6 +59,7 @@ $despliegueCol["title"] = "INSTANCIA"; // caption of column
 $despliegueCol["name"] = "despliegue"; // grid column name, must be exactly same as returned column-name from sql (tablefield or field-alias)
 $despliegueCol["link"] = "miembrosinstancia.php?nombre={despliegue}";
 $despliegueCol["classes"] = "clickDespliegue";
+$despliegueCol["editrules"] = array("required"=>true);
 $despliegueCol["editable"] = true;
 $despliegueCols[] = $despliegueCol;		
 
@@ -72,6 +73,7 @@ $despliegueCols[] = $despliegueCol;
 $despliegueCol = array();
 $despliegueCol["title"] = "DESDE";
 $despliegueCol["name"] = "fecha_creacion";
+$despliegueCol["editrules"] = array("required"=>true);
 $despliegueCol["editable"] = true;
 $despliegueCol["editoptions"] = array("size"=>20); // with default display of textbox with size 20
 $despliegueCol["formatter"] = "date"; // format as date

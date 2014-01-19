@@ -36,6 +36,7 @@ $cargoCol["title"] = "CARGO"; // caption of column
 $cargoCol["name"] = "cargo"; // grid column name, must be exactly same as returned column-name from sql (tablefield or field-alias) 
 $cargoCol["width"] = "60";
 $cargoCol["editable"] = true;
+$cargoCol["editrules"] = array("required"=>true);
 $cargoCols[] = $cargoCol;		
 
 $cargoCol = array();
@@ -63,8 +64,6 @@ $cargoCol["editable"] = false;
 $cargoCol["edittype"] = "select"; // render as select
 $cargoCol["editoptions"] = array("value"=>substr($areasText, 1));
 $cargoCols[] = $cargoCol;
-
-
 
 $cargoGrid["autowidth"] = true; // expand grid to screen width
 $cargoGrid["rowNum"] = 10;

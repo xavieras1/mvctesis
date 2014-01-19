@@ -23,6 +23,7 @@ $centroCol = array();
 $centroCol["title"] = "NOMBRE"; // caption of column
 $centroCol["name"] = "centro"; // grid column name, must be exactly same as returned column-name from sql (tablefield or field-alias)
 $centroCol["editable"] = true;
+$centroCol["editrules"] = array("required"=>true);
 $centroCols[] = $centroCol;		
 
 $centroCol = array();
@@ -36,6 +37,7 @@ $centroCol = array();
 $centroCol["title"] = "CREACIÓN";
 $centroCol["name"] = "fecha_creacion";
 $centroCol["editable"] = true;
+$centroCol["editrules"] = array("required"=>true);
 $centroCol["editoptions"] = array("size"=>20); // with default display of textbox with size 20
 $centroCol["formatter"] = "date"; // format as date
 $centroCol["align"] = "center";

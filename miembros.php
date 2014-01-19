@@ -24,6 +24,7 @@ $miembrosCol["title"] = "ID"; // caption of column
 $miembrosCol["name"] = "id"; // grid column name, must be exactly same as returned column-name from sql (tablefield or field-alias) 
 $miembrosCol["width"] = "70";
 $miembrosCol["editable"] = false;
+$miembrosCol["hidden"] = true;
 $miembrosCol["align"] = "center";
 $miembrosCols[] = $miembrosCol;		
 

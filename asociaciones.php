@@ -53,6 +53,7 @@ $permanenciaCol = array();
 $permanenciaCol["title"] = "AGRUPACIÓN"; // caption of column
 $permanenciaCol["name"] = "permanencia"; // grid column name, must be exactly same as returned column-name from sql (tablefield or field-alias)
 $permanenciaCol["editable"] = true;
+$permanenciaCol["editrules"] = array("required"=>true);
 $permanenciaCols[] = $permanenciaCol;		
 
 $permanenciaCol = array();

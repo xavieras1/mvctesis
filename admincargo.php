@@ -119,6 +119,7 @@ $col_cargo["editable"] = true;
 $col_cargo["editoptions"] = array("size"=>20); // with default display of textbox with size 20
 $col_cargo["formatter"] = "date"; // format as date
 $col_cargo["align"] = "center";
+$col_cargo["editrules"] = array("required"=>true);
 $cols_cargo[] = $col_cargo;
 
 $col_cargo = array();
@@ -158,5 +159,5 @@ $admincargo->set_columns($cols_cargo);
 // generate grid output, with unique grid name as 'list1'
 $admincargoOut = $admincargo->render("admincargo");
 
-echo $adminagrupaOut; //Display JQGrid $out
+echo $admincargoOut; //Display JQGrid $out
 ?>
