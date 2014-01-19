@@ -66,7 +66,7 @@ $cargoCol["editoptions"] = array("value"=>substr($areasText, 1));
 $cargoCols[] = $cargoCol;
 
 $cargoGrid["autowidth"] = true; // expand grid to screen width
-$cargoGrid["rowNum"] = 10;
+$cargoGrid["rowNum"] = 20;
 // export PDF file
 // export to excel parameters
 //$grid["export"] = array("format"=>"pdf", "filename"=>"my-file", "heading"=>"Cargos por Area", "orientation"=>"landscape");

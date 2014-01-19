@@ -2,17 +2,17 @@
 <div id="logo">
   <a href="/main.php"><img src="img/logo_blanco.png" alt="Log MVC Ecuador" title="MvcSystem" /></a>
 </div>
-<!-- <div id="info">
+<div id="info">
   <?php
     print '<span id="titulo" ';
-    if ($_SESSION["current_cargo"]['info']['cargo_id']==5) {
-      print '>'.$_SESSION["current_cargo"]['info']['nombre_cargo'];
-    } elseif ($_SESSION["current_cargo"]['info']['nivel']==2) {
+    // if ($_SESSION["current_cargo"]['info']['cargo_id']==5) {
+    //   print '>'.$_SESSION["current_cargo"]['info']['nombre_cargo'];
+    // } elseif ($_SESSION["current_cargo"]['info']['nivel']==2) {
       print '>Movimiento de Vida Cristiana Ecuador';
-    }else{
-      print 'class="permanencia'.$_SESSION["current_cargo"]['info']['permanencia_id'].'">'.$_SESSION["current_cargo"]['info']['permanencia_nombre'];
-    }
-  ?> -->
+    // }else{
+    //   print 'class="permanencia'.$_SESSION["current_cargo"]['info']['permanencia_id'].'">'.$_SESSION["current_cargo"]['info']['permanencia_nombre'];
+    // }
+  ?> 
 </span>
 <div id="profile">
   <a href="#"><div id="saludo">
