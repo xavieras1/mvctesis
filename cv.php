@@ -7,7 +7,7 @@
  * @license: see license.txt included in package
  */
  
-$conn = mysql_connect("localhost", "root", "");
+$conn = mysql_connect("localhost", "root", "root");
 mysql_select_db("mvc");
 
 // set your db encoding -- for ascent chars (if required)
