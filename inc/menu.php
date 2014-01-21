@@ -9,4 +9,5 @@
   <li><a class="father" href="#admindesp"><span>ADMIN. INSTANCIAS</span></a></li>
   <li><a class="father" href="#admincargo"><span>ADMIN. CARGOS</span></a></li>
   <li><a class="father" href="#cv"><span>CV MVCISTA</span></a></li>
+  <li><a class="father" href="#balance"><span>INGRESO/EGRESO</span></a></li>
 </ul>

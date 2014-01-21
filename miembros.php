@@ -74,7 +74,6 @@ $miembrosCol["editable"] = true;
 $miembrosCol["align"] = "center";
 $miembrosCol["edittype"] = "select"; // render as select
 $miembrosCol["editoptions"] = array("value"=>'hombre:hombre;mujer:mujer');
-$miembrosCol["hidden"] = true;
 $miembrosCol["editrules"] = array("required"=>true, "edithidden"=>true); // and is required
 $miembrosCols[] = $miembrosCol;
 
