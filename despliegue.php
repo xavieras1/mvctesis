@@ -8,7 +8,7 @@
  */
  
 // set up DB
-$conn = mysql_connect("localhost", "root", "");
+$conn = mysql_connect("localhost", "root", "root");
 mysql_select_db("mvc");
 
 // set your db encoding -- for ascent chars (if required)
@@ -67,6 +67,7 @@ $despliegueCol = array();
 $despliegueCol["title"] = "DESCRIPCIÓN";
 $despliegueCol["name"] = "descripcion";
 $despliegueCol["editable"] = true;
+$despliegueCol["search"] = false;
 $despliegueCol["edittype"] = "textarea"; // render as textarea on edit
 $despliegueCols[] = $despliegueCol;
 
@@ -99,12 +100,15 @@ $despliegueCol = array();
 $despliegueCol["title"] = "LUGAR"; // caption of column
 $despliegueCol["name"] = "lugar"; // grid column name, must be exactly same as returned column-name from sql (tablefield or field-alias)
 $despliegueCol["editable"] = true;
+$despliegueCol["search"] = false;
 $despliegueCols[] = $despliegueCol;
 
 $despliegueCol = array();
 $despliegueCol["title"] = "COLABORACIÓN"; // caption of column
 $despliegueCol["name"] = "colaboracion"; // grid column name, must be exactly same as returned column-name from sql (tablefield or field-alias)
 $despliegueCol["editable"] = true;
+$despliegueCol["sorttype"] = "float";
+$despliegueCol["search"] = false;
 $despliegueCols[] = $despliegueCol;
 
 $despliegueCol = array();
@@ -123,6 +127,7 @@ $despliegueCol = array();
 $despliegueCol["title"] = "CONTENIDOS"; // caption of column
 $despliegueCol["name"] = "contenidos"; // grid column name, must be exactly same as returned column-name from sql (tablefield or field-alias)
 $despliegueCol["edittype"] = "textarea";
+$despliegueCol["search"] = false;
 $despliegueCol["editable"] = true;
 $despliegueCols[] = $despliegueCol;
 
@@ -131,6 +136,7 @@ $despliegueCol["title"] = "OBSERVACIONES"; // caption of column
 $despliegueCol["name"] = "observaciones"; // grid column name, must be exactly same as returned column-name from sql (tablefield or field-alias)
 $despliegueCol["edittype"] = "textarea";
 $despliegueCol["editable"] = true;
+$despliegueCol["search"] = false;
 $despliegueCols[] = $despliegueCol;
 
 $despliegueCol = array();
@@ -138,6 +144,7 @@ $despliegueCol["title"] = "LISTA DE RECURSOS"; // caption of column
 $despliegueCol["name"] = "lista_recursos"; // grid column name, must be exactly same as returned column-name from sql (tablefield or field-alias)
 $despliegueCol["edittype"] = "textarea";
 $despliegueCol["editable"] = true;
+$despliegueCol["search"] = false;
 $despliegueCols[] = $despliegueCol;
 
 $despliegue = new jqgrid();
@@ -160,7 +167,7 @@ $despliegue->set_actions(array(
 
 // you can provide custom SQL query to display data
 $despliegue->select_command = "SELECT * FROM (SELECT d.id, d.centro_id, c.centro, d.despliegue, d.descripcion, d.fecha_creacion, d.fecha_fin, d.horario, d.lugar, d.colaboracion, d.numero_taller, d.categoria, d.contenidos, d.observaciones, d.lista_recursos FROM instancia_despliegue d
-						INNER JOIN centro c ON d.centro_id = c.id) o";
+						INNER JOIN centro c ON d.centro_id = c.id AND d.despliegue != 'balance') o";
 
 // this db table will be used for add,edit,delete
 $despliegue->table = "instancia_despliegue";
@@ -168,8 +175,48 @@ $despliegue->table = "instancia_despliegue";
 // pass the cooked columns to grid
 $despliegue->set_columns($despliegueCols);
 
-// generate grid output, with unique grid name as 'list1'
-$despliegueOut = $despliegue->render("despliegue");
+$out = $despliegue->render("list1");?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" media="screen" href="js/themes/redmond/jquery-ui.custom.css"></link>	
+	<link rel="stylesheet" type="text/css" media="screen" href="js/jqgrid/css/ui.jqgrid.css"></link>	
+	
+	<script src="js/jquery.min.js" type="text/javascript"></script>
+	<script src="js/jqgrid/js/grid.locale-es.js" type="text/javascript"></script>
+	<script src="js/jqgrid/js/jquery.jqGrid.min.js" type="text/javascript"></script>	
+	<script src="js/themes/jquery-ui.custom.min.js" type="text/javascript"></script>
 
-echo $despliegueOut;
-?>
+	<link rel='stylesheet' href='css/mvc.css' />
+
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+</head>
+<body>
+	<div id="header">
+      <?php include 'inc/header.php';?>
+    </div>
+    <div id="wrapper">
+      <div id="menu_bar">
+         <?php 
+          //if ($_SESSION["current_cargo"]['info']['cargo_id']==5) {//por ahora superadmin
+            include 'inc/menu.php';
+          
+        ?>
+      </div>
+	<div id="main">
+        <div id="content_header">
+          <span id="content_title"></span>
+        </div>
+        <div id="content">
+          <?php echo $out; //Display JQGrid $out?>
+        </div>
+      </div>
+    </div>
+    <div id="footer">
+      <span>MVC-SYSTEM</span></br>
+      <span>MOVIMIENTO DE VIDA CRISTIANA ECUADOR</span></br>
+      <span>(C) SAC 2013</span></br>
+    </div>
+</body>
+</html>

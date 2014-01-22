@@ -8,7 +8,7 @@
  */
  
 // set up DB
-$conn = mysql_connect("localhost", "root", "");
+$conn = mysql_connect("localhost", "root", "root");
 mysql_select_db("mvc");
 
 // set your db encoding -- for ascent chars (if required)
@@ -135,7 +135,7 @@ $admindesp->table = "persona_centro_cargo_instancia";
 $admindesp->set_columns($cols_des);
 
 // generate grid output, with unique grid name as 'list1'
-$admindespOut= $admindesp->render("admindesp");
+$out = $admindesp->render("list1");?>
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html>
@@ -170,7 +170,7 @@ $admindespOut= $admindesp->render("admindesp");
           <span id="content_title"></span>
         </div>
         <div id="content">
-        <?php echo $admindespOut; //Display JQGrid $out?>
+        <?php echo $out; //Display JQGrid $out?>
         </div>
       </div>
     </div>

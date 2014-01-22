@@ -8,7 +8,7 @@
  */
  
 // set up DB
-$conn = mysql_connect("localhost", "root", "");
+$conn = mysql_connect("localhost", "root", "root");
 mysql_select_db("mvc");
 
 // set your db encoding -- for ascent chars (if required)
@@ -77,6 +77,12 @@ $col_aso["editoptions"] = array("value"=>substr($personasText, 1));
 $cols_aso[] = $col_aso;
 
 $col_aso = array();
+$col_aso["title"] = "PERSONA";
+$col_aso["name"] = "apellido";
+$col_aso["editable"] = false;
+$cols_aso[] = $col_aso;
+
+$col_aso = array();
 $col_aso["title"] = "CENTRO APOSTÓLICO";
 $col_aso["name"] = "centro_id";
 $col_aso["editable"] = true;
@@ -136,7 +142,7 @@ $adminagrupa->set_actions(array(
 );
 
 // you can provide custom SQL query to display data
-$adminagrupa->select_command = "SELECT * FROM (SELECT pcci.id, pcci.persona_id, p.nombre, pcci.centro_id, c.centro, pcci.instancia, pcci.fecha_creacion, pcci.fecha_fin FROM persona_centro_cargo_instancia pcci INNER JOIN persona p ON pcci.persona_id = p.id INNER JOIN centro c ON pcci.centro_id = c.id INNER JOIN instancia_permanencia pe ON pcci.instancia = pe.permanencia) o";
+$adminagrupa->select_command = "SELECT * FROM (SELECT pcci.id, pcci.persona_id, p.nombre, p.apellido, pcci.centro_id, c.centro, pcci.instancia, pcci.fecha_creacion, pcci.fecha_fin FROM persona_centro_cargo_instancia pcci INNER JOIN persona p ON pcci.persona_id = p.id INNER JOIN centro c ON pcci.centro_id = c.id INNER JOIN instancia_permanencia pe ON pcci.instancia = pe.permanencia) o";
 
 // this db table will be used for add,edit,delete
 $adminagrupa->table = "persona_centro_cargo_instancia";
@@ -144,8 +150,48 @@ $adminagrupa->table = "persona_centro_cargo_instancia";
 // pass the cooked columns to grid
 $adminagrupa->set_columns($cols_aso);
 
-// generate grid output, with unique grid name as 'list1'
-$adminagrupaOut= $adminagrupa->render("adminagrupa");
+$out = $adminagrupa->render("list1");?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html>
+<head>
+        <link rel="stylesheet" type="text/css" media="screen" href="js/themes/redmond/jquery-ui.custom.css"></link>     
+        <link rel="stylesheet" type="text/css" media="screen" href="js/jqgrid/css/ui.jqgrid.css"></link>        
+        
+        <script src="js/jquery.min.js" type="text/javascript"></script>
+        <script src="js/jqgrid/js/grid.locale-es.js" type="text/javascript"></script>
+        <script src="js/jqgrid/js/jquery.jqGrid.min.js" type="text/javascript"></script>        
+        <script src="js/themes/jquery-ui.custom.min.js" type="text/javascript"></script>
 
-echo $adminagrupaOut; //Display JQGrid $out
-?>
+        <link rel='stylesheet' href='css/mvc.css' />
+
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+</head>
+<body>
+        <div id="header">
+      <?php include 'inc/header.php';?>
+    </div>
+    <div id="wrapper">
+      <div id="menu_bar">
+         <?php 
+          //if ($_SESSION["current_cargo"]['info']['cargo_id']==5) {//por ahora superadmin
+            include 'inc/menu.php';
+          
+        ?>
+      </div>
+        <div id="main">
+        <div id="content_header">
+          <span id="content_title"></span>
+        </div>
+        <div id="content">
+          <?php echo $out; //Display JQGrid $out?>
+        </div>
+      </div>
+    </div>
+    <div id="footer">
+      <span>MVC-SYSTEM</span></br>
+      <span>MOVIMIENTO DE VIDA CRISTIANA ECUADOR</span></br>
+      <span>(C) SAC 2013</span></br>
+    </div>
+</body>
+</html>
