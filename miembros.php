@@ -32,6 +32,7 @@ $miembrosCol = array();
 $miembrosCol["title"] = "FOTO";
 $miembrosCol["name"] = "foto";
 $miembrosCol["editable"] = true;
+$miembrosCol["hidden"] = true;
 $miembrosCol["align"] = "center";
 $miembrosCol["formatter"] = "image"; // format as image -- if data is image url e.g. http://<domain>/test.jpg
 $miembrosCol["formatoptions"] = array("width"=>'80',"height"=>'100'); // image width / height etc
@@ -74,7 +75,6 @@ $miembrosCol["editable"] = true;
 $miembrosCol["align"] = "center";
 $miembrosCol["edittype"] = "select"; // render as select
 $miembrosCol["editoptions"] = array("value"=>'hombre:hombre;mujer:mujer');
-$miembrosCol["hidden"] = true;
 $miembrosCol["editrules"] = array("required"=>true, "edithidden"=>true); // and is required
 $miembrosCols[] = $miembrosCol;
 
@@ -232,8 +232,48 @@ $miembros->table = "persona";
 // pass the cooked columns to grid
 $miembros->set_columns($miembrosCols);
 
-// generate grid output, with unique grid name as 'list1'
-$miembrosOut = $miembros->render("miembros");
+$out = $miembros->render("list1");?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" media="screen" href="js/themes/redmond/jquery-ui.custom.css"></link>	
+	<link rel="stylesheet" type="text/css" media="screen" href="js/jqgrid/css/ui.jqgrid.css"></link>	
+	
+	<script src="js/jquery.min.js" type="text/javascript"></script>
+	<script src="js/jqgrid/js/grid.locale-es.js" type="text/javascript"></script>
+	<script src="js/jqgrid/js/jquery.jqGrid.min.js" type="text/javascript"></script>	
+	<script src="js/themes/jquery-ui.custom.min.js" type="text/javascript"></script>
 
-echo $miembrosOut; //Display JQGrid $out
-?>
+	<link rel='stylesheet' href='css/mvc.css' />
+
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+</head>
+<body>
+	<div id="header">
+      <?php include 'inc/header.php';?>
+    </div>
+    <div id="wrapper">
+      <div id="menu_bar">
+         <?php 
+          //if ($_SESSION["current_cargo"]['info']['cargo_id']==5) {//por ahora superadmin
+            include 'inc/menu.php';
+          
+        ?>
+      </div>
+	<div id="main">
+        <div id="content_header">
+          <span id="content_title"></span>
+        </div>
+        <div id="content">
+          <?php echo $out; //Display JQGrid $out?>
+        </div>
+      </div>
+    </div>
+    <div id="footer">
+      <span>MVC-SYSTEM</span></br>
+      <span>MOVIMIENTO DE VIDA CRISTIANA ECUADOR</span></br>
+      <span>(C) SAC 2013</span></br>
+    </div>
+</body>
+</html>
