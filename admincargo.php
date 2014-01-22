@@ -187,7 +187,7 @@ $out = $admincargo->render("list1");?>
       </div>
         <div id="main">
         <div id="content_header">
-          <span id="content_title"></span>
+          <span id="content_title">ADMIN. CARGOS</span>
         </div>
         <div id="content">
           <?php echo $out; //Display JQGrid $out?>

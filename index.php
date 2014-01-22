@@ -125,7 +125,7 @@ $out = $cargos->render("list1");
       </div>
   <div id="main">
         <div id="content_header">
-          <span id="content_title"></span>
+          <span id="content_title">CARGOS POR ÁREAS</span>
         </div>
         <div id="content">
           <?php echo $out; //Display JQGrid $out?> 

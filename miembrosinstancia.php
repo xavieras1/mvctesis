@@ -117,11 +117,11 @@ $grid_des["rowNum"] = 10;
 $admindesp->set_options($grid_des);
 
 $admindesp->set_actions(array(  
-            "add"=>true, // allow/disallow add
-            "edit"=>true, // allow/disallow edit
-            "delete"=>true, // allow/disallow delete
-            "export"=>true, // show/hide export to excel option
-            "rowactions"=>true, // show/hide row wise edit/del/save option
+            "add"=>false, // allow/disallow add
+            "edit"=>false, // allow/disallow edit
+            "delete"=>false, // allow/disallow delete
+            "export"=>false, // show/hide export to excel option
+            "rowactions"=>false, // show/hide row wise edit/del/save option
           ) 
         );
 
@@ -167,7 +167,7 @@ $out = $admindesp->render("list1");?>
       </div>
   <div id="main">
         <div id="content_header">
-          <span id="content_title"></span>
+          <span id="content_title">LISTA DE PARTICIPANTES</span>
         </div>
         <div id="content">
         <?php echo $out; //Display JQGrid $out?>
@@ -217,14 +217,6 @@ $(document).ready(function(){
     });
 
   });
-  $('#content').change(function(){
-    console.log($active.attr('href'));
-    if($active.attr('href')=="despliegue")
-      console.log($( ".clickDespliegue" ).find( "a" ));
-      // $(".clickDespliegue a").click(function() {
-      //   console.log($(this).attr("href").substring(11));
-      //   // $("#content").load("miembrosinstancia.php?nombre="+$(this).attr("href").substring(11));
-      // });
-  });
+
 });
 </script>

@@ -169,7 +169,7 @@ $out = $despliegue->render("list1");?>
       </div>
         <div id="main">
         <div id="content_header">
-          <span id="content_title"></span>
+          <span id="content_title">INGRESO/EGRESO</span>
         </div>
         <div id="content">
           <?php echo $out; //Display JQGrid $out?>

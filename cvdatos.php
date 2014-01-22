@@ -126,16 +126,16 @@ $grid_des["rowNum"] = 10;
 $cvdatos->set_options($grid_des);
 
 $cvdatos->set_actions(array(  
-            "add"=>true, // allow/disallow add
-            "edit"=>true, // allow/disallow edit
-            "delete"=>true, // allow/disallow delete
-            "export"=>true, // show/hide export to excel option
-            "rowactions"=>true, // show/hide row wise edit/del/save option
+            "add"=>false, // allow/disallow add
+            "edit"=>false, // allow/disallow edit
+            "delete"=>false, // allow/disallow delete
+            "export"=>false, // show/hide export to excel option
+            "rowactions"=>false, // show/hide row wise edit/del/save option
           ) 
         );
 
 // you can provide custom SQL query to display data
-$cvdatos->select_command = "SELECT * FROM (SELECT pcci.id, pcci.centro_id, c.centro, pcci.cargo_id, ca.cargo, pcci.instancia, pcci.fecha_creacion, pcci.fecha_fin FROM persona_centro_cargo_instancia pcci INNER JOIN centro c ON pcci.centro_id = c.id INNER JOIN cargo ca ON pcci.cargo_id = ca.id INNER JOIN persona p ON pcci.persona_id = '".$_GET["id"]."') o";
+$cvdatos->select_command = "SELECT * FROM (SELECT pcci.id, pcci.centro_id, c.centro, pcci.cargo_id, ca.cargo, pcci.instancia, pcci.fecha_creacion, pcci.fecha_fin FROM persona_centro_cargo_instancia pcci INNER JOIN centro c ON pcci.centro_id = c.id INNER JOIN cargo ca ON pcci.cargo_id = ca.id INNER JOIN persona p ON pcci.persona_id = '".$_GET["idpersona"]."') o";
 
 // this db table will be used for add,edit,delete
 $cvdatos->table = "persona_centro_cargo_instancia";
@@ -176,7 +176,7 @@ $cvdatosOut= $cvdatos->render("cvdatos");
       </div>
   <div id="main">
         <div id="content_header">
-          <span id="content_title"></span>
+          <span id="content_title">CV MVCISTA</span>
         </div>
         <div id="content">
         <?php echo $cvdatosOut; //Display JQGrid $out?>

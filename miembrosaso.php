@@ -106,16 +106,16 @@ $grid_des["rowNum"] = 10;
 $admindesp->set_options($grid_des);
 
 $admindesp->set_actions(array(  
-            "add"=>true, // allow/disallow add
-            "edit"=>true, // allow/disallow edit
-            "delete"=>true, // allow/disallow delete
-            "export"=>true, // show/hide export to excel option
-            "rowactions"=>true, // show/hide row wise edit/del/save option
+            "add"=>false, // allow/disallow add
+            "edit"=>false, // allow/disallow edit
+            "delete"=>false, // allow/disallow delete
+            "export"=>false, // show/hide export to excel option
+            "rowactions"=>false, // show/hide row wise edit/del/save option
           ) 
         );
 
 // you can provide custom SQL query to display data
-$admindesp->select_command = "SELECT * FROM (SELECT pcci.id, pcci.persona_id, p.nombre, p.apellido, pcci.fecha_creacion, pcci.fecha_fin FROM persona_centro_cargo_instancia pcci INNER JOIN persona p ON pcci.persona_id = p.id INNER JOIN instancia_despliegue d ON pcci.persona_id = '".$_GET["id"]."') o";
+$admindesp->select_command = "SELECT * FROM (SELECT pcci.id, pcci.persona_id, p.nombre, p.apellido, pcci.fecha_creacion, pcci.fecha_fin FROM persona_centro_cargo_instancia pcci INNER JOIN persona p ON pcci.persona_id = p.id INNER JOIN instancia_despliegue d ON pcci.instancia = '".$_GET["nombre"]."') o";
 
 // this db table will be used for add,edit,delete
 $admindesp->table = "persona_centro_cargo_instancia";
@@ -156,7 +156,7 @@ $out = $admindesp->render("list1");?>
       </div>
   <div id="main">
         <div id="content_header">
-          <span id="content_title"></span>
+          <span id="content_title">LISTA DE AGRUPADOS</span>
         </div>
         <div id="content">
         <?php echo $out; //Display JQGrid $out?>

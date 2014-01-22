@@ -52,10 +52,17 @@ $permanenciaCols[] = $permanenciaCol;
 $permanenciaCol = array();
 $permanenciaCol["title"] = "AGRUPACIÓN"; // caption of column
 $permanenciaCol["name"] = "permanencia"; // grid column name, must be exactly same as returned column-name from sql (tablefield or field-alias)
-$permanenciaCol["editable"] = true;
 $permanenciaCol["editrules"] = array("required"=>true);
-$permanenciaCol["link"] = "miembrosaso.php?idaso={id}"; 
+$permanenciaCol["link"] = "miembrosaso.php?nombre={permanencia}"; 
 $permanenciaCols[] = $permanenciaCol;		
+
+$permanenciaCol = array();
+$permanenciaCol["title"] = "AGRUPACIÓN"; // caption of column
+$permanenciaCol["name"] = "permanencia"; // grid column name, must be exactly same as returned column-name from sql (tablefield or field-alias)
+$permanenciaCol["editrules"] = array("required"=>true, "edithidden"=>true);
+$permanenciaCol["hidden"] = true;
+$permanenciaCol["editable"] = true;
+$permanenciaCols[] = $permanenciaCol;   
 
 $permanenciaCol = array();
 $permanenciaCol["title"] = "DESCRIPCIÓN";
@@ -140,7 +147,7 @@ $out = $permanecia->render("list1");?>
       </div>
         <div id="main">
         <div id="content_header">
-          <span id="content_title"></span>
+          <span id="content_title">ASOCIACIONES</span>
         </div>
         <div id="content">
           <?php echo $out; //Display JQGrid $out?>

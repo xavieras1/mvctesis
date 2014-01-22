@@ -58,10 +58,15 @@ $despliegueCol = array();
 $despliegueCol["title"] = "INSTANCIA"; // caption of column
 $despliegueCol["name"] = "despliegue"; // grid column name, must be exactly same as returned column-name from sql (tablefield or field-alias)
 $despliegueCol["link"] = "miembrosinstancia.php?nombre={despliegue}";
-$despliegueCol["classes"] = "clickDespliegue";
-$despliegueCol["editrules"] = array("required"=>true);
-$despliegueCol["editable"] = true;
 $despliegueCols[] = $despliegueCol;		
+
+$despliegueCol = array();
+$despliegueCol["title"] = "INSTANCIA"; // caption of column
+$despliegueCol["name"] = "despliegue"; // grid column name, must be exactly same as returned column-name from sql (tablefield or field-alias)
+$despliegueCol["editrules"] = array("required"=>true, "edithidden"=>true); // and is required
+$despliegueCol["hidden"] = true;
+$despliegueCol["editable"] = true;
+$despliegueCols[] = $despliegueCol;   
 
 $despliegueCol = array();
 $despliegueCol["title"] = "DESCRIPCIÓN";
@@ -206,7 +211,7 @@ $out = $despliegue->render("list1");?>
       </div>
 	<div id="main">
         <div id="content_header">
-          <span id="content_title"></span>
+          <span id="content_title">INSTANCIAS</span>
         </div>
         <div id="content">
           <?php echo $out; //Display JQGrid $out?>
