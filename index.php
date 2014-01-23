@@ -63,10 +63,9 @@ $col["edittype"] = "select"; // render as select
 $col["editoptions"] = array("value"=>substr($areasText, 1));
 $cols[] = $col;
 
-
-
 $grid["autowidth"] = true; // expand grid to screen width
 $grid["rowNum"] = 20;
+$grid["multiselect"] = true;
 // export PDF file
 // export to excel parameters
 //$grid["export"] = array("format"=>"pdf", "filename"=>"my-file", "heading"=>"Cargos por Area", "orientation"=>"landscape");

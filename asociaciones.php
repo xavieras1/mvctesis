@@ -91,6 +91,7 @@ $permanenciaCols[] = $permanenciaCol;
 
 $permanenciaGrid["autowidth"] = true; // expand grid to screen width
 $permanenciaGrid["rowNum"] = 10;
+$permanenciaGrid["multiselect"] = true;
 // $grid["export"] = array("format"=>"pdf", "filename"=>"my-file", "sheetname"=>"test");
 // $grid["export"]["paged"] = "1";
 

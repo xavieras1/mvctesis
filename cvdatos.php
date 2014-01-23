@@ -123,6 +123,13 @@ $cols_des[] = $col_des;
 $grid_des["autowidth"] = true; // expand grid to screen width
 $grid_des["rowNum"] = 10;
 
+$grid_des["grouping"] = true; // 
+$grid_des["groupingView"] = array();
+$grid_des["groupingView"]["groupField"] = array("instancia"); // specify column name to group listing
+$grid_des["groupingView"]["groupColumnShow"] = array(false); // either show grouped column in list or not (default: true)
+$grid_des["groupingView"]["groupOrder"] = array("asc"); // show group in asc or desc order
+//$despliegueGrid["groupingView"]["groupSummary"] = array(true); // work with summaryType, summaryTpl, see column: $col["name"] = "total";
+
 $cvdatos->set_options($grid_des);
 
 $cvdatos->set_actions(array(  
@@ -144,7 +151,7 @@ $cvdatos->table = "persona_centro_cargo_instancia";
 $cvdatos->set_columns($cols_des);
 
 // generate grid output, with unique grid name as 'list1'
-$cvdatosOut= $cvdatos->render("cvdatos");
+$out= $cvdatos->render("cvdatos");
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html>
@@ -179,7 +186,7 @@ $cvdatosOut= $cvdatos->render("cvdatos");
           <span id="content_title">CV MVCISTA</span>
         </div>
         <div id="content">
-        <?php echo $cvdatosOut; //Display JQGrid $out?>
+        <?php echo $out; //Display JQGrid $out?>
         </div>
       </div>
     </div>
@@ -190,50 +197,3 @@ $cvdatosOut= $cvdatos->render("cvdatos");
     </div>
 </body>
 </html>
-<script type="text/javascript">
-$(document).ready(function(){
-  
-  /*************************************MENU**************************************/
-  $('#menu_bar').each(function(){
-
-    // Bind the click event handler
-    $(this).delegate('a.father,a#btn_ver_perfil', 'click', function(e){
-      // Make the old tab inactive.
-      $active.removeClass('active');
-      $content.hide();
-      //$('#main_table tbody').empty();
-      //$(".agregar").removeAttr("disabled");
-
-      // Update the variables with the new link and content
-      $active = $(this);
-      $content = $($(this).attr('href'));
-      $importa = $(this).attr('href');
-
-      // Make the tab active.
-      $active.addClass('active');
-      // $content.show();
-      $("#content").load($(this).attr('href').substring(1)+".php");
-
-      $('#content_title').text($active.first().text());
-
-      if($(this)==$('#btn_ver_perfil')){
-        $('ul.roles').hide();
-        $('#saludo').css('background-color','#005597');
-      }
-
-      // Prevent the anchor's default click action
-      e.preventDefault();
-    });
-
-  });
-  $('#content').change(function(){
-    console.log($active.attr('href'));
-    if($active.attr('href')=="cvdatos")
-      console.log($( ".clickDespliegue" ).find( "a" ));
-      // $(".clickDespliegue a").click(function() {
-      //   console.log($(this).attr("href").substring(11));
-      //   // $("#content").load("miembrosinstancia.php?nombre="+$(this).attr("href").substring(11));
-      // });
-  });
-});
-</script>

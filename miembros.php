@@ -65,6 +65,7 @@ $miembrosCol["editable"] = true;
 $miembrosCol["edittype"] = "select"; // render as select
 $miembrosCol["editoptions"] = array("value"=>'Santiago de Guayaquil:Santiago de Guayaquil;San Pablo de Manta:San Pablo de Manta;San Francisco de Quito:San Francisco de Quito');
 $miembrosCol["align"] = "center";
+$miembrosCol["hidden"] = true;
 $miembrosCol["editrules"] = array("required"=>true, "edithidden"=>true); // and is required
 $miembrosCols[] = $miembrosCol;
 
@@ -93,6 +94,7 @@ $miembrosCol["editable"] = true;
 $miembrosCol["width"] = "190";
 $miembrosCol["editoptions"] = array("size"=>20); // with default display of textbox with size 20
 $miembrosCol["formatter"] = "date"; // format as date
+$miembrosCol["hidden"] = true;
 $miembrosCol["align"] = "center";
 $miembrosCols[] = $miembrosCol;
 
@@ -119,6 +121,7 @@ $miembrosCol["title"] = "INSTITUCIÓN";
 $miembrosCol["name"] = "institucion";
 $miembrosCol["editable"] = true;
 $miembrosCol["align"] = "center";
+$miembrosCol["hidden"] = true;
 $miembrosCols[] = $miembrosCol;
 
 $miembrosCol = array();
@@ -134,6 +137,7 @@ $miembrosCol["title"] = "CELL CLARO";
 $miembrosCol["name"] = "celular_claro";
 $miembrosCol["editable"] = true;
 $miembrosCol["align"] = "center";
+$miembrosCol["hidden"] = true;
 $miembrosCol["editrules"] = array("number"=>true);
 $miembrosCols[] = $miembrosCol;
 
@@ -141,6 +145,7 @@ $miembrosCol = array();
 $miembrosCol["title"] = "CELL MOVISTAR";
 $miembrosCol["name"] = "celular_movistar";
 $miembrosCol["editable"] = true;
+$miembrosCol["hidden"] = true;
 $miembrosCol["align"] = "center";
 $miembrosCol["editrules"] = array("number"=>true);
 $miembrosCols[] = $miembrosCol;
@@ -157,6 +162,7 @@ $miembrosCol = array();
 $miembrosCol["title"] = "FACEBOOK";
 $miembrosCol["name"] = "facebook";
 $miembrosCol["editable"] = true;
+$miembrosCol["hidden"] = true;
 $miembrosCol["align"] = "center";
 $miembrosCols[] = $miembrosCol;
 
@@ -165,6 +171,7 @@ $miembrosCol["title"] = "TWITTER";
 $miembrosCol["name"] = "twitter";
 $miembrosCol["editable"] = true;
 $miembrosCol["align"] = "center";
+$miembrosCol["hidden"] = true;
 $miembrosCols[] = $miembrosCol;
 
 $miembrosCol = array();
@@ -199,6 +206,7 @@ $miembrosCol["title"] = "USUARIO";
 $miembrosCol["name"] = "usuario";
 $miembrosCol["editable"] = true;
 $miembrosCol["align"] = "center";
+$miembrosCol["hidden"] = true;
 $miembrosCols[] = $miembrosCol;
 
 $miembrosCol = array();
@@ -207,12 +215,14 @@ $miembrosCol["name"] = "contrasena";
 $miembrosCol["editable"] = true;
 $miembrosCol["formatter"] = "password";
 $miembrosCol["align"] = "center";
+$miembrosCol["hidden"] = true;
 $miembrosCols[] = $miembrosCol;
 
 $miembros = new jqgrid();
 
 $miembrosGrid["autowidth"] = true; // expand grid to screen width
 $miembrosGrid["rowNum"] = 10;
+$miembrosGrid["multiselect"] = true;
 $miembros->set_options($miembrosGrid);
 
 $miembros->set_actions(array(	

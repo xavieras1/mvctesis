@@ -69,11 +69,17 @@ $col_cargo["editoptions"] = array("value"=>substr($personasText, 1));
 $cols_cargo[] = $col_cargo;
 
 $col_cargo = array();
-$col_cargo["title"] = "PERSONA";
+$col_cargo["title"] = "NOMBRE";
 $col_cargo["name"] = "nombre";
 $col_cargo["editable"] = false;
 $col_cargo["edittype"] = "select"; // render as select
 $col_cargo["editoptions"] = array("value"=>substr($personasText, 1));
+$cols_cargo[] = $col_cargo;
+
+$col_cargo = array();
+$col_cargo["title"] = "APELLIDO";
+$col_cargo["name"] = "apellido";
+$col_cargo["editable"] = false;
 $cols_cargo[] = $col_cargo;
 
 $col_cargo = array();
@@ -148,7 +154,7 @@ $admincargo->set_actions(array(
                                 );
 
 // you can provide custom SQL query to display data
-$admincargo->select_command = "SELECT * FROM (SELECT pcci.id, pcci.persona_id, p.nombre, pcci.centro_id, c.centro, pcci.cargo_id, ca.cargo, pcci.fecha_creacion, pcci.fecha_fin FROM persona_centro_cargo_instancia pcci INNER JOIN persona p ON pcci.persona_id = p.id INNER JOIN centro c ON pcci.centro_id = c.id INNER JOIN cargo ca ON pcci.cargo_id = ca.id) o";
+$admincargo->select_command = "SELECT * FROM (SELECT pcci.id, pcci.persona_id, p.nombre, p.apellido, pcci.centro_id, c.centro, pcci.cargo_id, ca.cargo, pcci.fecha_creacion, pcci.fecha_fin FROM persona_centro_cargo_instancia pcci INNER JOIN persona p ON pcci.persona_id = p.id INNER JOIN centro c ON pcci.centro_id = c.id INNER JOIN cargo ca ON pcci.cargo_id = ca.id) o";
 
 // this db table will be used for add,edit,delete
 $admincargo->table = "persona_centro_cargo_instancia";

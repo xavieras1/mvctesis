@@ -69,7 +69,7 @@ $col_aso["editoptions"] = array("value"=>substr($personasText, 1));
 $cols_aso[] = $col_aso;
 
 $col_aso = array();
-$col_aso["title"] = "PERSONA";
+$col_aso["title"] = "NOMBRE";
 $col_aso["name"] = "nombre";
 $col_aso["editable"] = false;
 $col_aso["edittype"] = "select"; // render as select
@@ -77,7 +77,7 @@ $col_aso["editoptions"] = array("value"=>substr($personasText, 1));
 $cols_aso[] = $col_aso;
 
 $col_aso = array();
-$col_aso["title"] = "PERSONA";
+$col_aso["title"] = "APELLIDO";
 $col_aso["name"] = "apellido";
 $col_aso["editable"] = false;
 $cols_aso[] = $col_aso;

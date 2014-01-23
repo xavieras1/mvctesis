@@ -70,6 +70,7 @@ $centros = new jqgrid();
 
 $centroGrid["autowidth"] = true; // expand grid to screen width
 $centroGrid["rowNum"] = 10;
+$centroGrid["multiselect"] = true;
 $centros->set_options($centroGrid);
 
 $centros->set_actions(array(	

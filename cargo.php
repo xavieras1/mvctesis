@@ -67,6 +67,7 @@ $cargoCols[] = $cargoCol;
 
 $cargoGrid["autowidth"] = true; // expand grid to screen width
 $cargoGrid["rowNum"] = 20;
+$cargoGrid["multiselect"] = true;
 // export PDF file
 // export to excel parameters
 //$grid["export"] = array("format"=>"pdf", "filename"=>"my-file", "heading"=>"Cargos por Area", "orientation"=>"landscape");
