@@ -130,6 +130,13 @@ $cols_des[] = $col_des;
 $grid_des["autowidth"] = true; // expand grid to screen width
 $grid_des["rowNum"] = 10;
 
+$grid_des["grouping"] = true; // 
+$grid_des["groupingView"] = array();
+$grid_des["groupingView"]["groupField"] = array("instancia"); // specify column name to group listing
+$grid_des["groupingView"]["groupColumnShow"] = array(false); // either show grouped column in list or not (default: true)
+$grid_des["groupingView"]["groupOrder"] = array("asc"); // show group in asc or desc order
+$grid_des["groupingView"]["groupSummary"] = array(true);
+
 $admindesp->set_options($grid_des);
 
 $admindesp->set_actions(array(        
@@ -137,7 +144,7 @@ $admindesp->set_actions(array(
                                                 "edit"=>true, // allow/disallow edit
                                                 "delete"=>true, // allow/disallow delete
                                                 "export"=>true, // show/hide export to excel option
-                                                "rowactions"=>true, // show/hide row wise edit/del/save option
+                                                "rowactions"=>false, // show/hide row wise edit/del/save option
                                         ) 
                                 );
 

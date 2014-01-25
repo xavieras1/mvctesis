@@ -95,6 +95,12 @@ $permanenciaGrid["multiselect"] = true;
 // $grid["export"] = array("format"=>"pdf", "filename"=>"my-file", "sheetname"=>"test");
 // $grid["export"]["paged"] = "1";
 
+// $permanenciaGrid["grouping"] = true; // 
+// $permanenciaGrid["groupingView"] = array();
+// $permanenciaGrid["groupingView"]["groupField"] = array("centro"); // specify column name to group listing
+// $permanenciaGrid["groupingView"]["groupColumnShow"] = array(false); // either show grouped column in list or not (default: true)
+// $permanenciaGrid["groupingView"]["groupOrder"] = array("asc"); // show group in asc or desc order
+// $permanenciaGrid["groupingView"]["groupSummary"] = array(true); // work with summaryType, summaryTpl, see column: $col["name"] = "total";
 $permanecia->set_options($permanenciaGrid);
 
 $permanecia->set_actions(array(	
@@ -102,7 +108,7 @@ $permanecia->set_actions(array(
 						"edit"=>true, // allow/disallow edit
 						"delete"=>true, // allow/disallow delete
 						"export"=>true, // show/hide export to excel option
-						"rowactions"=>true, // show/hide row wise edit/del/save option
+						"rowactions"=>false, // show/hide row wise edit/del/save option
 					) 
 				);
 

@@ -19,36 +19,6 @@ include("inc/jqgrid_dist.php");
 
 $cvdatos = new jqgrid();
 
-// Personas obtenidas dinamicamente
-$resultp = mysql_query("SELECT * FROM persona");
-$rowsp = array();
-$personasText="";
-while ($rowp = mysql_fetch_assoc($resultp))
-  $rowsp[]=$rowp;
-mysql_free_result($resultp);
-for($i=0;$i<sizeof($rowsp);$i++)
-  $personasText.=";".$rowsp[$i]['id'].":".$rowsp[$i]['nombre'];
-
-// Centros Apostolicos obtenidas dinamicamente
-$resultc = mysql_query("SELECT * FROM centro");
-$rowsc = array();
-$centrosText="";
-while ($rowc = mysql_fetch_assoc($resultc))
-  $rowsc[]=$rowc;
-mysql_free_result($resultc);
-for($i=0;$i<sizeof($rowsc);$i++)
-  $centrosText.=";".$rowsc[$i]['id'].":".$rowsc[$i]['centro'];
-
-// Instancias obtenidas dinamicamente
-$result_desp = mysql_query("SELECT * FROM instancia_despliegue");
-$rows_desp = array();
-$despText="";
-while ($row_desp = mysql_fetch_assoc($result_desp))
-  $rows_desp[]=$row_desp;
-mysql_free_result($result_desp);
-for($i=0;$i<sizeof($rows_desp);$i++)
-  $despText.=";".$rows_desp[$i]['despliegue'].":".$rows_desp[$i]['despliegue'];
-
 // customizing columns
 $col_des = array();
 $col_des["title"] = "ID";
@@ -61,11 +31,9 @@ $col_des = array();
 $col_des["title"] = "CENTRO APOSTÓLICO";
 $col_des["name"] = "centro_id";
 $col_des["editable"] = true;
-$col_des["edittype"] = "select"; // render as select
 $col_des["hidden"] = true;
 $col_cv["search"] = false;
 $col_des["editrules"] = array("required"=>true, "edithidden"=>true); // and is required
-$col_des["editoptions"] = array("value"=>substr($centrosText, 1));
 $cols_des[] = $col_des;
 
 $col_des = array();
@@ -73,33 +41,26 @@ $col_des["title"] = "CENTRO APOSTÓLICO";
 $col_des["name"] = "centro";
 $col_des["editable"] = false;
 $col_cv["search"] = false;
-$col_des["edittype"] = "select"; // render as select
-$col_des["editoptions"] = array("value"=>substr($centrosText, 1));
 $cols_des[] = $col_des;
 
 $col_des = array();
 $col_des["title"] = "CARGO";
 $col_des["name"] = "cargo_id";
 $col_des["editable"] = true;
-$col_des["edittype"] = "select"; // render as select
 $col_des["hidden"] = true;
 $col_des["editrules"] = array("required"=>true, "edithidden"=>true); // and is required
-$col_des["editoptions"] = array("value"=>substr($cargosText, 1));
 $cols_des[] = $col_des;
 
 $col_des = array();
 $col_des["title"] = "CARGO"; // caption of column
 $col_des["name"] = "cargo"; // grid column name, must be exactly same as returned column-name from sql (tablefield or field-alias)
 $col_des["editable"] = false;
-$col_des["edittype"] = "select"; // render as select
-$col_des["editoptions"] = array("value"=>substr($cargosText, 1));
 $cols_des[] = $col_des; 
 
 $col_des = array();
 $col_des["title"] = "INSTANCIA";
 $col_des["name"] = "instancia";
 $col_des["editable"] = false;
-
 $cols_des[] = $col_des;
 
 $col_des = array();
@@ -123,11 +84,11 @@ $cols_des[] = $col_des;
 $grid_des["autowidth"] = true; // expand grid to screen width
 $grid_des["rowNum"] = 10;
 
-$grid_des["grouping"] = true; // 
-$grid_des["groupingView"] = array();
-$grid_des["groupingView"]["groupField"] = array("instancia"); // specify column name to group listing
-$grid_des["groupingView"]["groupColumnShow"] = array(false); // either show grouped column in list or not (default: true)
-$grid_des["groupingView"]["groupOrder"] = array("asc"); // show group in asc or desc order
+// $grid_des["grouping"] = true; // 
+// $grid_des["groupingView"] = array();
+// $grid_des["groupingView"]["groupField"] = array("instancia"); // specify column name to group listing
+// $grid_des["groupingView"]["groupColumnShow"] = array(false); // either show grouped column in list or not (default: true)
+// $grid_des["groupingView"]["groupOrder"] = array("asc"); // show group in asc or desc order
 //$despliegueGrid["groupingView"]["groupSummary"] = array(true); // work with summaryType, summaryTpl, see column: $col["name"] = "total";
 
 $cvdatos->set_options($grid_des);
@@ -142,7 +103,7 @@ $cvdatos->set_actions(array(
         );
 
 // you can provide custom SQL query to display data
-$cvdatos->select_command = "SELECT * FROM (SELECT pcci.id, pcci.centro_id, c.centro, pcci.cargo_id, ca.cargo, pcci.instancia, pcci.fecha_creacion, pcci.fecha_fin FROM persona_centro_cargo_instancia pcci INNER JOIN centro c ON pcci.centro_id = c.id INNER JOIN cargo ca ON pcci.cargo_id = ca.id INNER JOIN persona p ON pcci.persona_id = '".$_GET["idpersona"]."') o";
+$cvdatos->select_command = "SELECT * FROM (SELECT pcci.id, c.centro, ca.cargo, pcci.instancia, pcci.fecha_creacion, pcci.fecha_fin FROM persona_centro_cargo_instancia pcci, centro c, cargo ca WHERE pcci.centro_id = c.id AND pcci.cargo_id = ca.id AND pcci.persona_id = '".$_GET["idpersona"]."') o";
 
 // this db table will be used for add,edit,delete
 $cvdatos->table = "persona_centro_cargo_instancia";
@@ -151,7 +112,7 @@ $cvdatos->table = "persona_centro_cargo_instancia";
 $cvdatos->set_columns($cols_des);
 
 // generate grid output, with unique grid name as 'list1'
-$out= $cvdatos->render("cvdatos");
+$out= $cvdatos->render("list1");
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html>

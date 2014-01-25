@@ -83,7 +83,7 @@ $admindesp->set_actions(array(
         );
 
 // you can provide custom SQL query to display data
-$admindesp->select_command = "SELECT * FROM (SELECT pcci.id, pcci.persona_id, p.nombre, p.apellido, pcci.fecha_creacion, pcci.fecha_fin FROM persona_centro_cargo_instancia pcci INNER JOIN persona p ON pcci.persona_id = p.id INNER JOIN instancia_despliegue d ON pcci.instancia = '".$_GET["nombre"]."') o";
+$admindesp->select_command = "SELECT * FROM (SELECT DISTINCT pcci.id, pcci.persona_id, p.nombre, p.apellido, pcci.fecha_creacion, pcci.fecha_fin FROM persona_centro_cargo_instancia pcci INNER JOIN persona p ON pcci.persona_id = p.id INNER JOIN instancia_despliegue d ON pcci.instancia = '".$_GET["nombre"]."') o";
 
 // this db table will be used for add,edit,delete
 $admindesp->table = "persona_centro_cargo_instancia";
@@ -92,7 +92,7 @@ $admindesp->table = "persona_centro_cargo_instancia";
 $admindesp->set_columns($cols_des);
 
 // generate grid output, with unique grid name as 'list1'
-$out = $admindesp->render("list1");?>
+$out = $admindesp->render("list1");
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html>

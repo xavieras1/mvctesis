@@ -76,6 +76,14 @@ $col_des["editoptions"] = array("value"=>substr($personasText, 1));
 $cols_des[] = $col_des;
 
 $col_des = array();
+$col_des["title"] = "APELLIDO";
+$col_des["name"] = "apellido";
+$col_des["editable"] = true;
+$col_des["width"] = "130";
+$col_des["editrules"] = array("required"=>true, "edithidden"=>true); // and is required
+$cols_des[] = $col_des;
+
+$col_des = array();
 $col_des["title"] = "CENTRO APOSTÓLICO";
 $col_des["name"] = "centro_id";
 $col_des["editable"] = true;
@@ -126,7 +134,7 @@ $admindesp->set_actions(array(
         );
 
 // you can provide custom SQL query to display data
-$admindesp->select_command = "SELECT * FROM (SELECT pcci.id, pcci.persona_id, p.nombre, pcci.centro_id, c.centro, pcci.instancia, pcci.fecha_creacion, pcci.fecha_fin FROM persona_centro_cargo_instancia pcci INNER JOIN persona p ON pcci.persona_id = p.id INNER JOIN centro c ON pcci.centro_id = c.id INNER JOIN instancia_despliegue d ON pcci.instancia = '".$_GET["nombre"]."') o";
+$admindesp->select_command = "SELECT * FROM (SELECT DISTINCT pcci.id, pcci.persona_id, p.nombre, p.apellido, pcci.centro_id, c.centro, pcci.instancia, pcci.fecha_creacion, pcci.fecha_fin FROM persona_centro_cargo_instancia pcci INNER JOIN persona p ON pcci.persona_id = p.id INNER JOIN centro c ON pcci.centro_id = c.id INNER JOIN instancia_despliegue d ON pcci.instancia = '".$_GET["nombre"]."') o";
 
 // this db table will be used for add,edit,delete
 $admindesp->table = "persona_centro_cargo_instancia";

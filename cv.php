@@ -92,7 +92,7 @@ $cvpersona->set_actions(array(
 						"add"=>false, // allow/disallow add
 						"edit"=>false, // allow/disallow edit
 						"delete"=>false, // allow/disallow delete
-						"rowactions"=>true, // show/hide row wise edit/del/save option
+						"rowactions"=>false, // show/hide row wise edit/del/save option
 						"export"=>true, // show/hide export to excel option
 						"autofilter" => true, // show/hide autofilter for search
 						"search" => "advance" // show single/multi field search condition (e.g. simple or advance)

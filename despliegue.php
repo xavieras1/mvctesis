@@ -122,6 +122,7 @@ $despliegueCol["title"] = "# TALLERES"; // caption of column
 $despliegueCol["name"] = "numero_taller"; // grid column name, must be exactly same as returned column-name from sql (tablefield or field-alias)
 $despliegueCol["editable"] = true;
 $despliegueCol["hidden"] = true;
+$miembrosCol["editrules"] = array("edithidden"=>true);
 $despliegueCols[] = $despliegueCol;
 
 $despliegueCol = array();
@@ -129,6 +130,7 @@ $despliegueCol["title"] = "CATEGORÍA"; // caption of column
 $despliegueCol["name"] = "categoria"; // grid column name, must be exactly same as returned column-name from sql (tablefield or field-alias)
 $despliegueCol["editable"] = true;
 $despliegueCol["hidden"] = true;
+$despliegueCol["editrules"] = array("edithidden"=>true);
 $despliegueCols[] = $despliegueCol;
 
 $despliegueCol = array();
@@ -138,6 +140,7 @@ $despliegueCol["edittype"] = "textarea";
 $despliegueCol["search"] = false;
 $despliegueCol["editable"] = true;
 $despliegueCol["hidden"] = true;
+$despliegueCol["editrules"] = array("edithidden"=>true);
 $despliegueCols[] = $despliegueCol;
 
 $despliegueCol = array();
@@ -156,6 +159,7 @@ $despliegueCol["edittype"] = "textarea";
 $despliegueCol["editable"] = true;
 $despliegueCol["search"] = false;
 $despliegueCol["hidden"] = true;
+$despliegueCol["editrules"] = array("edithidden"=>true);
 $despliegueCols[] = $despliegueCol;
 
 $despliegue = new jqgrid();
@@ -179,7 +183,7 @@ $despliegue->set_actions(array(
 						"edit"=>true, // allow/disallow edit
 						"delete"=>true, // allow/disallow delete
 						"export"=>true, // show/hide export to excel option
-						"rowactions"=>true, // show/hide row wise edit/del/save option
+						"rowactions"=>false, // show/hide row wise edit/del/save option
 					) 
 				);
 

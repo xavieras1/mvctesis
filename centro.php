@@ -78,7 +78,7 @@ $centros->set_actions(array(
 						"edit"=>true, // allow/disallow edit
 						"delete"=>true, // allow/disallow delete
 						"export"=>true, // show/hide export to excel option
-						"rowactions"=>true, // show/hide row wise edit/del/save option
+						"rowactions"=>false, // show/hide row wise edit/del/save option
 					) 
 				);
 
