@@ -21,7 +21,7 @@
   <div id="cuentas" class="cuadros">
     <img src="img/btn_cuentas.png">
   </div></a>
-  <a href="includes/api.php?request=logout"><div id="cerrar" class="cuadros">
+  <a href="inc/logout.php"><div id="cerrar" class="cuadros">
     <img src="img/btn_cerrar.png">
   </div></a>
   <!-- <ul class="roles">
