@@ -1,4 +1,8 @@
 <?php
+if(session_id() == '') {
+  header('Location: ../index.php');
+}
+
 /**
  * PHP Grid Component
  *
@@ -199,9 +203,11 @@ $out = $despliegue->render("list1");?>
     <div id="wrapper">
       <div id="menu_bar">
          <?php 
-          //if ($_SESSION["current_cargo"]['info']['cargo_id']==5) {//por ahora superadmin
-            include 'inc/menu.php';
-          
+          if ($_SESSION['nivel_id']==3) {//por ahora superadmin
+            include 'inc/menuanimador.php';
+          }else if($_SESSION['nivel_id']==2){
+            include 'inc/menuareas.php';
+          }
         ?>
       </div>
 	<div id="main">
