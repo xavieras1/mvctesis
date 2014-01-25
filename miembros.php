@@ -222,7 +222,6 @@ $miembrosCol = array();
 $miembrosCol["title"] = "CONTRASEÑA";
 $miembrosCol["name"] = "contrasena";
 $miembrosCol["editable"] = true;
-$miembrosCol["formatter"] = "password";
 $miembrosCol["align"] = "center";
 $miembrosCol["hidden"] = true;
 $miembrosCol["editrules"] = array("edithidden"=>true);
