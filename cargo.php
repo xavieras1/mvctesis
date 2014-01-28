@@ -67,6 +67,7 @@ $cargoCols[] = $cargoCol;
 
 $cargoGrid["autowidth"] = true; // expand grid to screen width
 $cargoGrid["rowNum"] = 20;
+$cargoGrid["multiselect"] = true;
 // export PDF file
 // export to excel parameters
 //$grid["export"] = array("format"=>"pdf", "filename"=>"my-file", "heading"=>"Cargos por Area", "orientation"=>"landscape");
@@ -78,7 +79,7 @@ $cargos->set_actions(array(
 						"edit"=>true, // allow/disallow edit
 						"delete"=>true, // allow/disallow delete
 						"export"=>true, // show/hide export to excel option
-						"rowactions"=>true, // show/hide row wise edit/del/save option
+						"rowactions"=>false, // show/hide row wise edit/del/save option
 					) 
 				);
 
@@ -123,7 +124,7 @@ $out = $cargos->render("list1");?>
       </div>
         <div id="main">
         <div id="content_header">
-          <span id="content_title"></span>
+          <span id="content_title">CARGOS POR ÁREAS</span>
         </div>
         <div id="content">
           <?php echo $out; //Display JQGrid $out?>

@@ -96,7 +96,7 @@ $cvpersona->set_actions(array(
 						"add"=>false, // allow/disallow add
 						"edit"=>false, // allow/disallow edit
 						"delete"=>false, // allow/disallow delete
-						"rowactions"=>true, // show/hide row wise edit/del/save option
+						"rowactions"=>false, // show/hide row wise edit/del/save option
 						"export"=>true, // show/hide export to excel option
 						"autofilter" => true, // show/hide autofilter for search
 						"search" => "advance" // show single/multi field search condition (e.g. simple or advance)
@@ -145,7 +145,7 @@ $out = $cvpersona->render("list1");?>
       </div>
         <div id="main">
         <div id="content_header">
-          <span id="content_title"></span>
+          <span id="content_title">CV MVCISTA</span>
         </div>
         <div id="content">
           <?php echo $out; //Display JQGrid $out?>

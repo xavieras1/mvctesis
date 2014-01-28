@@ -62,10 +62,15 @@ $despliegueCol = array();
 $despliegueCol["title"] = "INSTANCIA"; // caption of column
 $despliegueCol["name"] = "despliegue"; // grid column name, must be exactly same as returned column-name from sql (tablefield or field-alias)
 $despliegueCol["link"] = "miembrosinstancia.php?nombre={despliegue}";
-$despliegueCol["classes"] = "clickDespliegue";
-$despliegueCol["editrules"] = array("required"=>true);
-$despliegueCol["editable"] = true;
 $despliegueCols[] = $despliegueCol;		
+
+$despliegueCol = array();
+$despliegueCol["title"] = "INSTANCIA"; // caption of column
+$despliegueCol["name"] = "despliegue"; // grid column name, must be exactly same as returned column-name from sql (tablefield or field-alias)
+$despliegueCol["editrules"] = array("required"=>true, "edithidden"=>true); // and is required
+$despliegueCol["hidden"] = true;
+$despliegueCol["editable"] = true;
+$despliegueCols[] = $despliegueCol;   
 
 $despliegueCol = array();
 $despliegueCol["title"] = "DESCRIPCIÓN";
@@ -112,6 +117,7 @@ $despliegueCol["title"] = "COLABORACIÓN"; // caption of column
 $despliegueCol["name"] = "colaboracion"; // grid column name, must be exactly same as returned column-name from sql (tablefield or field-alias)
 $despliegueCol["editable"] = true;
 $despliegueCol["sorttype"] = "float";
+$despliegueCol["formatter"] = "number";
 $despliegueCol["search"] = false;
 $despliegueCols[] = $despliegueCol;
 
@@ -119,12 +125,16 @@ $despliegueCol = array();
 $despliegueCol["title"] = "# TALLERES"; // caption of column
 $despliegueCol["name"] = "numero_taller"; // grid column name, must be exactly same as returned column-name from sql (tablefield or field-alias)
 $despliegueCol["editable"] = true;
+$despliegueCol["hidden"] = true;
+$miembrosCol["editrules"] = array("edithidden"=>true);
 $despliegueCols[] = $despliegueCol;
 
 $despliegueCol = array();
 $despliegueCol["title"] = "CATEGORÍA"; // caption of column
 $despliegueCol["name"] = "categoria"; // grid column name, must be exactly same as returned column-name from sql (tablefield or field-alias)
 $despliegueCol["editable"] = true;
+$despliegueCol["hidden"] = true;
+$despliegueCol["editrules"] = array("edithidden"=>true);
 $despliegueCols[] = $despliegueCol;
 
 $despliegueCol = array();
@@ -133,6 +143,8 @@ $despliegueCol["name"] = "contenidos"; // grid column name, must be exactly same
 $despliegueCol["edittype"] = "textarea";
 $despliegueCol["search"] = false;
 $despliegueCol["editable"] = true;
+$despliegueCol["hidden"] = true;
+$despliegueCol["editrules"] = array("edithidden"=>true);
 $despliegueCols[] = $despliegueCol;
 
 $despliegueCol = array();
@@ -141,6 +153,7 @@ $despliegueCol["name"] = "observaciones"; // grid column name, must be exactly s
 $despliegueCol["edittype"] = "textarea";
 $despliegueCol["editable"] = true;
 $despliegueCol["search"] = false;
+$despliegueCol["hidden"] = true;
 $despliegueCols[] = $despliegueCol;
 
 $despliegueCol = array();
@@ -149,14 +162,23 @@ $despliegueCol["name"] = "lista_recursos"; // grid column name, must be exactly 
 $despliegueCol["edittype"] = "textarea";
 $despliegueCol["editable"] = true;
 $despliegueCol["search"] = false;
+$despliegueCol["hidden"] = true;
+$despliegueCol["editrules"] = array("edithidden"=>true);
 $despliegueCols[] = $despliegueCol;
 
 $despliegue = new jqgrid();
 
 $despliegueGrid["autowidth"] = true; // expand grid to screen width
 $despliegueGrid["rowNum"] = 10;
+//$despliegueGrid["multiselect"] = true;
 // $grid["export"] = array("format"=>"pdf", "filename"=>"my-file", "sheetname"=>"test");
 // $grid["export"]["paged"] = "1";
+// $despliegueGrid["grouping"] = true; // 
+// $despliegueGrid["groupingView"] = array();
+// $despliegueGrid["groupingView"]["groupField"] = array("centro"); // specify column name to group listing
+// $despliegueGrid["groupingView"]["groupColumnShow"] = array(false); // either show grouped column in list or not (default: true)
+// $despliegueGrid["groupingView"]["groupOrder"] = array("asc"); // show group in asc or desc order
+// $despliegueGrid["groupingView"]["groupSummary"] = array(true);
 
 $despliegue->set_options($despliegueGrid);
 
@@ -165,7 +187,7 @@ $despliegue->set_actions(array(
 						"edit"=>true, // allow/disallow edit
 						"delete"=>true, // allow/disallow delete
 						"export"=>true, // show/hide export to excel option
-						"rowactions"=>true, // show/hide row wise edit/del/save option
+						"rowactions"=>false, // show/hide row wise edit/del/save option
 					) 
 				);
 
@@ -212,7 +234,7 @@ $out = $despliegue->render("list1");?>
       </div>
 	<div id="main">
         <div id="content_header">
-          <span id="content_title"></span>
+          <span id="content_title">INSTANCIAS</span>
         </div>
         <div id="content">
           <?php echo $out; //Display JQGrid $out?>

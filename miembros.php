@@ -41,6 +41,7 @@ $miembrosCol["align"] = "center";
 $miembrosCol["formatter"] = "image"; // format as image -- if data is image url e.g. http://<domain>/test.jpg
 $miembrosCol["formatoptions"] = array("width"=>'80',"height"=>'100'); // image width / height etc
 $miembrosCol["edittype"] = "file"; // render as file
+$miembrosCol["editrules"] = array("edithidden"=>true);
 $miembrosCol["upload_dir"] = "temp"; // upload here
 $miembrosCols[] = $miembrosCol;
 
@@ -69,6 +70,7 @@ $miembrosCol["editable"] = true;
 $miembrosCol["edittype"] = "select"; // render as select
 $miembrosCol["editoptions"] = array("value"=>'Santiago de Guayaquil:Santiago de Guayaquil;San Pablo de Manta:San Pablo de Manta;San Francisco de Quito:San Francisco de Quito');
 $miembrosCol["align"] = "center";
+$miembrosCol["hidden"] = true;
 $miembrosCol["editrules"] = array("required"=>true, "edithidden"=>true); // and is required
 $miembrosCols[] = $miembrosCol;
 
@@ -87,7 +89,7 @@ $miembrosCol["title"] = "EDAD";
 $miembrosCol["name"] = "edad";
 $miembrosCol["align"] = "center";
 $miembrosCol["editable"] = true;
-$miembrosCol["editrules"] = array("number"=>true);
+$miembrosCol["editrules"] = array("number"=>true, "edithidden"=>true);
 $miembrosCols[] = $miembrosCol;
 
 $miembrosCol = array();
@@ -97,7 +99,9 @@ $miembrosCol["editable"] = true;
 $miembrosCol["width"] = "190";
 $miembrosCol["editoptions"] = array("size"=>20); // with default display of textbox with size 20
 $miembrosCol["formatter"] = "date"; // format as date
+$miembrosCol["hidden"] = true;
 $miembrosCol["align"] = "center";
+$miembrosCol["editrules"] = array("edithidden"=>true);
 $miembrosCols[] = $miembrosCol;
 
 $miembrosCol = array();
@@ -107,6 +111,7 @@ $miembrosCol["width"] = "250";
 $miembrosCol["editable"] = true;
 $miembrosCol["edittype"] = "textarea"; // render as textarea on edit
 $miembrosCol["align"] = "center";
+$miembrosCol["editrules"] = array("edithidden"=>true);
 $miembrosCols[] = $miembrosCol;
 
 $miembrosCol = array();
@@ -115,6 +120,7 @@ $miembrosCol["name"] = "nivel_estudio";
 $miembrosCol["editable"] = true;
 $miembrosCol["edittype"] = "select"; // render as select
 $miembrosCol["align"] = "center";
+$miembrosCol["editrules"] = array("edithidden"=>true);
 $miembrosCol["editoptions"] = array("value"=>'primaria:primaria;secundaria:secundaria;universitario:universitario;profesional:profesional');
 $miembrosCols[] = $miembrosCol;
 
@@ -123,6 +129,8 @@ $miembrosCol["title"] = "INSTITUCIÓN";
 $miembrosCol["name"] = "institucion";
 $miembrosCol["editable"] = true;
 $miembrosCol["align"] = "center";
+$miembrosCol["hidden"] = true;
+$miembrosCol["editrules"] = array("edithidden"=>true);
 $miembrosCols[] = $miembrosCol;
 
 $miembrosCol = array();
@@ -130,7 +138,7 @@ $miembrosCol["title"] = "TELÉFONO";
 $miembrosCol["name"] = "telefono";
 $miembrosCol["editable"] = true;
 $miembrosCol["align"] = "center";
-$miembrosCol["editrules"] = array("number"=>true);
+$miembrosCol["editrules"] = array("edithidden"=>true, "number"=>true);
 $miembrosCols[] = $miembrosCol;
 
 $miembrosCol = array();
@@ -138,15 +146,17 @@ $miembrosCol["title"] = "CELL CLARO";
 $miembrosCol["name"] = "celular_claro";
 $miembrosCol["editable"] = true;
 $miembrosCol["align"] = "center";
-$miembrosCol["editrules"] = array("number"=>true);
+$miembrosCol["hidden"] = true;
+$miembrosCol["editrules"] = array("edithidden"=>true, "number"=>true);
 $miembrosCols[] = $miembrosCol;
 
 $miembrosCol = array();
 $miembrosCol["title"] = "CELL MOVISTAR";
 $miembrosCol["name"] = "celular_movistar";
 $miembrosCol["editable"] = true;
+$miembrosCol["hidden"] = true;
 $miembrosCol["align"] = "center";
-$miembrosCol["editrules"] = array("number"=>true);
+$miembrosCol["editrules"] = array("edithidden"=>true, "number"=>true);
 $miembrosCols[] = $miembrosCol;
 
 $miembrosCol = array();
@@ -154,14 +164,16 @@ $miembrosCol["title"] = "EMAIL";
 $miembrosCol["name"] = "email";
 $miembrosCol["editable"] = true;
 $miembrosCol["align"] = "center";
-$miembrosCol["editrules"] = array("email"=>true); 
+$miembrosCol["editrules"] = array("email"=>true, "edithidden"=>true);
 $miembrosCols[] = $miembrosCol;
 
 $miembrosCol = array();
 $miembrosCol["title"] = "FACEBOOK";
 $miembrosCol["name"] = "facebook";
 $miembrosCol["editable"] = true;
+$miembrosCol["hidden"] = true;
 $miembrosCol["align"] = "center";
+$miembrosCol["editrules"] = array("edithidden"=>true);
 $miembrosCols[] = $miembrosCol;
 
 $miembrosCol = array();
@@ -169,6 +181,8 @@ $miembrosCol["title"] = "TWITTER";
 $miembrosCol["name"] = "twitter";
 $miembrosCol["editable"] = true;
 $miembrosCol["align"] = "center";
+$miembrosCol["hidden"] = true;
+$miembrosCol["editrules"] = array("edithidden"=>true);
 $miembrosCols[] = $miembrosCol;
 
 $miembrosCol = array();
@@ -196,6 +210,7 @@ $miembrosCol["editable"] = true;
 $miembrosCol["editoptions"] = array("size"=>20); // with default display of textbox with size 20
 $miembrosCol["formatter"] = "date"; // format as date
 $miembrosCol["align"] = "center";
+$miembrosCol["editrules"] = array("edithidden"=>true);
 $miembrosCols[] = $miembrosCol;
 
 $miembrosCol = array();
@@ -203,27 +218,31 @@ $miembrosCol["title"] = "USUARIO";
 $miembrosCol["name"] = "usuario";
 $miembrosCol["editable"] = true;
 $miembrosCol["align"] = "center";
+$miembrosCol["hidden"] = true;
+$miembrosCol["editrules"] = array("edithidden"=>true);
 $miembrosCols[] = $miembrosCol;
 
 $miembrosCol = array();
 $miembrosCol["title"] = "CONTRASEÑA";
 $miembrosCol["name"] = "contrasena";
 $miembrosCol["editable"] = true;
-$miembrosCol["formatter"] = "password";
 $miembrosCol["align"] = "center";
+$miembrosCol["hidden"] = true;
+$miembrosCol["editrules"] = array("edithidden"=>true);
 $miembrosCols[] = $miembrosCol;
 
 $miembros = new jqgrid();
 
 $miembrosGrid["autowidth"] = true; // expand grid to screen width
 $miembrosGrid["rowNum"] = 10;
+$miembrosGrid["multiselect"] = true;
 $miembros->set_options($miembrosGrid);
 
 $miembros->set_actions(array(	
 						"add"=>true, // allow/disallow add
 						"edit"=>true, // allow/disallow edit
 						"delete"=>true, // allow/disallow delete
-						"rowactions"=>true, // show/hide row wise edit/del/save option
+						"rowactions"=>false, // show/hide row wise edit/del/save option
 					) 
 				);
 
@@ -269,7 +288,7 @@ $out = $miembros->render("list1");?>
       </div>
 	<div id="main">
         <div id="content_header">
-          <span id="content_title"></span>
+          <span id="content_title">MIEMBROS</span>
         </div>
         <div id="content">
           <?php echo $out; //Display JQGrid $out?>

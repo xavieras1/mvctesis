@@ -73,11 +73,17 @@ $col_des["editoptions"] = array("value"=>substr($personasText, 1));
 $cols_des[] = $col_des;
 
 $col_des = array();
-$col_des["title"] = "PERSONA";
+$col_des["title"] = "NOMBRE";
 $col_des["name"] = "nombre";
 $col_des["editable"] = false;
 $col_des["edittype"] = "select"; // render as select
 $col_des["editoptions"] = array("value"=>substr($personasText, 1));
+$cols_des[] = $col_des;
+
+$col_des = array();
+$col_des["title"] = "APELLIDO";
+$col_des["name"] = "apellido";
+$col_des["editable"] = false;
 $cols_des[] = $col_des;
 
 $col_des = array();
@@ -128,6 +134,13 @@ $cols_des[] = $col_des;
 $grid_des["autowidth"] = true; // expand grid to screen width
 $grid_des["rowNum"] = 10;
 
+$grid_des["grouping"] = true; // 
+$grid_des["groupingView"] = array();
+$grid_des["groupingView"]["groupField"] = array("instancia"); // specify column name to group listing
+$grid_des["groupingView"]["groupColumnShow"] = array(false); // either show grouped column in list or not (default: true)
+$grid_des["groupingView"]["groupOrder"] = array("asc"); // show group in asc or desc order
+$grid_des["groupingView"]["groupSummary"] = array(true);
+
 $admindesp->set_options($grid_des);
 
 $admindesp->set_actions(array(        
@@ -135,12 +148,12 @@ $admindesp->set_actions(array(
                                                 "edit"=>true, // allow/disallow edit
                                                 "delete"=>true, // allow/disallow delete
                                                 "export"=>true, // show/hide export to excel option
-                                                "rowactions"=>true, // show/hide row wise edit/del/save option
+                                                "rowactions"=>false, // show/hide row wise edit/del/save option
                                         ) 
                                 );
 
 // you can provide custom SQL query to display data
-$admindesp->select_command = "SELECT * FROM (SELECT pcci.id, pcci.persona_id, p.nombre, pcci.centro_id, c.centro, pcci.instancia, pcci.fecha_creacion, pcci.fecha_fin FROM persona_centro_cargo_instancia pcci INNER JOIN persona p ON pcci.persona_id = p.id INNER JOIN centro c ON pcci.centro_id = c.id INNER JOIN instancia_despliegue d ON pcci.instancia = d.despliegue) o";
+$admindesp->select_command = "SELECT * FROM (SELECT pcci.id, pcci.persona_id, p.nombre, p.apellido, pcci.centro_id, c.centro, pcci.instancia, pcci.fecha_creacion, pcci.fecha_fin FROM persona_centro_cargo_instancia pcci INNER JOIN persona p ON pcci.persona_id = p.id INNER JOIN centro c ON pcci.centro_id = c.id INNER JOIN instancia_despliegue d ON pcci.instancia = d.despliegue) o";
 
 // this db table will be used for add,edit,delete
 $admindesp->table = "persona_centro_cargo_instancia";
@@ -181,7 +194,7 @@ $out = $admindesp->render("list1");?>
       </div>
         <div id="main">
         <div id="content_header">
-          <span id="content_title"></span>
+          <span id="content_title">ADMIN. INSTANCIAS</span>
         </div>
         <div id="content">
           <?php echo $out; //Display JQGrid $out?>

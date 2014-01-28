@@ -73,7 +73,7 @@ $col_aso["editoptions"] = array("value"=>substr($personasText, 1));
 $cols_aso[] = $col_aso;
 
 $col_aso = array();
-$col_aso["title"] = "PERSONA";
+$col_aso["title"] = "NOMBRE";
 $col_aso["name"] = "nombre";
 $col_aso["editable"] = false;
 $col_aso["edittype"] = "select"; // render as select
@@ -81,7 +81,7 @@ $col_aso["editoptions"] = array("value"=>substr($personasText, 1));
 $cols_aso[] = $col_aso;
 
 $col_aso = array();
-$col_aso["title"] = "PERSONA";
+$col_aso["title"] = "APELLIDO";
 $col_aso["name"] = "apellido";
 $col_aso["editable"] = false;
 $cols_aso[] = $col_aso;
@@ -141,7 +141,7 @@ $adminagrupa->set_actions(array(
                 "edit"=>true, // allow/disallow edit
                 "delete"=>true, // allow/disallow delete
                 "export"=>true, // show/hide export to excel option
-                "rowactions"=>true, // show/hide row wise edit/del/save option
+                "rowactions"=>false, // show/hide row wise edit/del/save option
         ) 
 );
 
@@ -187,7 +187,7 @@ $out = $adminagrupa->render("list1");?>
       </div>
         <div id="main">
         <div id="content_header">
-          <span id="content_title"></span>
+          <span id="content_title">ADMIN. ASOCIACIONES</span>
         </div>
         <div id="content">
           <?php echo $out; //Display JQGrid $out?>
