@@ -1,8 +1,8 @@
 <?php 
-if(session_id() == '') {
-  header('Location: ../index.php');
+session_start();
+if(is_null($_SESSION["nivel_id"])) {
+  header('Location: index.php');
 }
-
 /**
  * PHP Grid Component
  *
