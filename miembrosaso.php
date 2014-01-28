@@ -19,41 +19,10 @@ include("inc/jqgrid_dist.php");
 
 $admindesp = new jqgrid();
 
-// Personas obtenidas dinamicamente
-$resultp = mysql_query("SELECT * FROM persona");
-$rowsp = array();
-$personasText="";
-while ($rowp = mysql_fetch_assoc($resultp))
-  $rowsp[]=$rowp;
-mysql_free_result($resultp);
-for($i=0;$i<sizeof($rowsp);$i++)
-  $personasText.=";".$rowsp[$i]['id'].":".$rowsp[$i]['nombre'];
-
-// Centros Apostolicos obtenidas dinamicamente
-$resultc = mysql_query("SELECT * FROM centro");
-$rowsc = array();
-$centrosText="";
-while ($rowc = mysql_fetch_assoc($resultc))
-  $rowsc[]=$rowc;
-mysql_free_result($resultc);
-for($i=0;$i<sizeof($rowsc);$i++)
-  $centrosText.=";".$rowsc[$i]['id'].":".$rowsc[$i]['centro'];
-
-// Instancias obtenidas dinamicamente
-$result_desp = mysql_query("SELECT * FROM instancia_despliegue");
-$rows_desp = array();
-$despText="";
-while ($row_desp = mysql_fetch_assoc($result_desp))
-  $rows_desp[]=$row_desp;
-mysql_free_result($result_desp);
-for($i=0;$i<sizeof($rows_desp);$i++)
-  $despText.=";".$rows_desp[$i]['despliegue'].":".$rows_desp[$i]['despliegue'];
-
 // customizing columns
 $col_des = array();
 $col_des["title"] = "ID";
 $col_des["name"] = "id";
-$col_des["editable"] = false;
 $col_des["hidden"] = true;
 $cols_des[] = $col_des;
 
@@ -67,7 +36,6 @@ $cols_des[] = $col_des;
 $col_des = array();
 $col_des["title"] = "NOMBRE";
 $col_des["name"] = "nombre";
-$col_des["editable"] = true;
 $col_des["width"] = "130";
 $col_des["align"] = "center";
 $col_des["editrules"] = array("required"=>true, "edithidden"=>true); // and is required
@@ -106,16 +74,16 @@ $grid_des["rowNum"] = 10;
 $admindesp->set_options($grid_des);
 
 $admindesp->set_actions(array(  
-            "add"=>true, // allow/disallow add
-            "edit"=>true, // allow/disallow edit
-            "delete"=>true, // allow/disallow delete
-            "export"=>true, // show/hide export to excel option
-            "rowactions"=>true, // show/hide row wise edit/del/save option
+            "add"=>false, // allow/disallow add
+            "edit"=>false, // allow/disallow edit
+            "delete"=>false, // allow/disallow delete
+            "export"=>false, // show/hide export to excel option
+            "rowactions"=>false, // show/hide row wise edit/del/save option
           ) 
         );
 
 // you can provide custom SQL query to display data
-$admindesp->select_command = "SELECT * FROM (SELECT pcci.id, pcci.persona_id, p.nombre, p.apellido, pcci.fecha_creacion, pcci.fecha_fin FROM persona_centro_cargo_instancia pcci INNER JOIN persona p ON pcci.persona_id = p.id INNER JOIN instancia_despliegue d ON pcci.persona_id = '".$_GET["id"]."') o";
+$admindesp->select_command = "SELECT * FROM (SELECT DISTINCT pcci.id, pcci.persona_id, p.nombre, p.apellido, pcci.fecha_creacion, pcci.fecha_fin FROM persona_centro_cargo_instancia pcci INNER JOIN persona p ON pcci.persona_id = p.id INNER JOIN instancia_despliegue d ON pcci.instancia = '".$_GET["nombre"]."') o";
 
 // this db table will be used for add,edit,delete
 $admindesp->table = "persona_centro_cargo_instancia";
@@ -124,7 +92,7 @@ $admindesp->table = "persona_centro_cargo_instancia";
 $admindesp->set_columns($cols_des);
 
 // generate grid output, with unique grid name as 'list1'
-$out = $admindesp->render("list1");?>
+$out = $admindesp->render("list1");
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html>
@@ -156,7 +124,7 @@ $out = $admindesp->render("list1");?>
       </div>
   <div id="main">
         <div id="content_header">
-          <span id="content_title"></span>
+          <span id="content_title">LISTA DE AGRUPADOS</span>
         </div>
         <div id="content">
         <?php echo $out; //Display JQGrid $out?>
@@ -170,50 +138,3 @@ $out = $admindesp->render("list1");?>
     </div>
 </body>
 </html>
-<script type="text/javascript">
-$(document).ready(function(){
-  
-  /*************************************MENU**************************************/
-  $('#menu_bar').each(function(){
-
-    // Bind the click event handler
-    $(this).delegate('a.father,a#btn_ver_perfil', 'click', function(e){
-      // Make the old tab inactive.
-      $active.removeClass('active');
-      $content.hide();
-      //$('#main_table tbody').empty();
-      //$(".agregar").removeAttr("disabled");
-
-      // Update the variables with the new link and content
-      $active = $(this);
-      $content = $($(this).attr('href'));
-      $importa = $(this).attr('href');
-
-      // Make the tab active.
-      $active.addClass('active');
-      // $content.show();
-      $("#content").load($(this).attr('href').substring(1)+".php");
-
-      $('#content_title').text($active.first().text());
-
-      if($(this)==$('#btn_ver_perfil')){
-        $('ul.roles').hide();
-        $('#saludo').css('background-color','#005597');
-      }
-
-      // Prevent the anchor's default click action
-      e.preventDefault();
-    });
-
-  });
-  $('#content').change(function(){
-    console.log($active.attr('href'));
-    if($active.attr('href')=="despliegue")
-      console.log($( ".clickDespliegue" ).find( "a" ));
-      // $(".clickDespliegue a").click(function() {
-      //   console.log($(this).attr("href").substring(11));
-      //   // $("#content").load("miembrosinstancia.php?nombre="+$(this).attr("href").substring(11));
-      // });
-  });
-});
-</script>

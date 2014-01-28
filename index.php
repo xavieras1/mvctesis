@@ -1,5 +1,6 @@
 <!--Angel Astudillo && Andrea Simbaña-->
 <!DOCTYPE html>
+$grid["multiselect"] = true;
 <html>
   <head>
     <title>MVC SYSTEM LOGIN</title>

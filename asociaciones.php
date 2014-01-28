@@ -57,10 +57,17 @@ $permanenciaCols[] = $permanenciaCol;
 $permanenciaCol = array();
 $permanenciaCol["title"] = "AGRUPACIÓN"; // caption of column
 $permanenciaCol["name"] = "permanencia"; // grid column name, must be exactly same as returned column-name from sql (tablefield or field-alias)
-$permanenciaCol["editable"] = true;
 $permanenciaCol["editrules"] = array("required"=>true);
-$permanenciaCol["link"] = "miembrosaso.php?idaso={id}"; 
+$permanenciaCol["link"] = "miembrosaso.php?nombre={permanencia}"; 
 $permanenciaCols[] = $permanenciaCol;		
+
+$permanenciaCol = array();
+$permanenciaCol["title"] = "AGRUPACIÓN"; // caption of column
+$permanenciaCol["name"] = "permanencia"; // grid column name, must be exactly same as returned column-name from sql (tablefield or field-alias)
+$permanenciaCol["editrules"] = array("required"=>true, "edithidden"=>true);
+$permanenciaCol["hidden"] = true;
+$permanenciaCol["editable"] = true;
+$permanenciaCols[] = $permanenciaCol;   
 
 $permanenciaCol = array();
 $permanenciaCol["title"] = "DESCRIPCIÓN";
@@ -89,9 +96,16 @@ $permanenciaCols[] = $permanenciaCol;
 
 $permanenciaGrid["autowidth"] = true; // expand grid to screen width
 $permanenciaGrid["rowNum"] = 10;
+$permanenciaGrid["multiselect"] = true;
 // $grid["export"] = array("format"=>"pdf", "filename"=>"my-file", "sheetname"=>"test");
 // $grid["export"]["paged"] = "1";
 
+// $permanenciaGrid["grouping"] = true; // 
+// $permanenciaGrid["groupingView"] = array();
+// $permanenciaGrid["groupingView"]["groupField"] = array("centro"); // specify column name to group listing
+// $permanenciaGrid["groupingView"]["groupColumnShow"] = array(false); // either show grouped column in list or not (default: true)
+// $permanenciaGrid["groupingView"]["groupOrder"] = array("asc"); // show group in asc or desc order
+// $permanenciaGrid["groupingView"]["groupSummary"] = array(true); // work with summaryType, summaryTpl, see column: $col["name"] = "total";
 $permanecia->set_options($permanenciaGrid);
 
 $permanecia->set_actions(array(	
@@ -99,7 +113,7 @@ $permanecia->set_actions(array(
 						"edit"=>true, // allow/disallow edit
 						"delete"=>true, // allow/disallow delete
 						"export"=>true, // show/hide export to excel option
-						"rowactions"=>true, // show/hide row wise edit/del/save option
+						"rowactions"=>false, // show/hide row wise edit/del/save option
 					) 
 				);
 
@@ -147,7 +161,7 @@ $out = $permanecia->render("list1");?>
       </div>
         <div id="main">
         <div id="content_header">
-          <span id="content_title"></span>
+          <span id="content_title">ASOCIACIONES</span>
         </div>
         <div id="content">
           <?php echo $out; //Display JQGrid $out?>

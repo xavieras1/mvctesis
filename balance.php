@@ -65,6 +65,8 @@ $despliegueCol["title"] = "INSTANCIA"; // caption of column
 $despliegueCol["name"] = "despliegue"; // grid column name, must be exactly same as returned column-name from sql (tablefield or field-alias)
 $despliegueCol["editrules"] = array("required"=>true);
 $despliegueCol["search"] = false;
+$despliegueCol["editable"] = true;
+//$despliegueCol["hidden"] = true;
 //$despliegueCol["value"] = "balance";
 $despliegueCols[] = $despliegueCol;		
 
@@ -129,7 +131,7 @@ $despliegue->set_actions(array(
 						"edit"=>true, // allow/disallow edit
 						"delete"=>true, // allow/disallow delete
 						"export"=>true, // show/hide export to excel option
-						"rowactions"=>true, // show/hide row wise edit/del/save option
+						"rowactions"=>false, // show/hide row wise edit/del/save option
 					) 
 				);
 
@@ -175,7 +177,7 @@ $out = $despliegue->render("list1");?>
       </div>
         <div id="main">
         <div id="content_header">
-          <span id="content_title"></span>
+          <span id="content_title">INGRESO/EGRESO</span>
         </div>
         <div id="content">
           <?php echo $out; //Display JQGrid $out?>

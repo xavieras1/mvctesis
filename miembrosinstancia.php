@@ -76,6 +76,14 @@ $col_des["editoptions"] = array("value"=>substr($personasText, 1));
 $cols_des[] = $col_des;
 
 $col_des = array();
+$col_des["title"] = "APELLIDO";
+$col_des["name"] = "apellido";
+$col_des["editable"] = true;
+$col_des["width"] = "130";
+$col_des["editrules"] = array("required"=>true, "edithidden"=>true); // and is required
+$cols_des[] = $col_des;
+
+$col_des = array();
 $col_des["title"] = "CENTRO APOSTÓLICO";
 $col_des["name"] = "centro_id";
 $col_des["editable"] = true;
@@ -117,16 +125,16 @@ $grid_des["rowNum"] = 10;
 $admindesp->set_options($grid_des);
 
 $admindesp->set_actions(array(  
-            "add"=>true, // allow/disallow add
-            "edit"=>true, // allow/disallow edit
-            "delete"=>true, // allow/disallow delete
-            "export"=>true, // show/hide export to excel option
-            "rowactions"=>true, // show/hide row wise edit/del/save option
+            "add"=>false, // allow/disallow add
+            "edit"=>false, // allow/disallow edit
+            "delete"=>false, // allow/disallow delete
+            "export"=>false, // show/hide export to excel option
+            "rowactions"=>false, // show/hide row wise edit/del/save option
           ) 
         );
 
 // you can provide custom SQL query to display data
-$admindesp->select_command = "SELECT * FROM (SELECT pcci.id, pcci.persona_id, p.nombre, pcci.centro_id, c.centro, pcci.instancia, pcci.fecha_creacion, pcci.fecha_fin FROM persona_centro_cargo_instancia pcci INNER JOIN persona p ON pcci.persona_id = p.id INNER JOIN centro c ON pcci.centro_id = c.id INNER JOIN instancia_despliegue d ON pcci.instancia = '".$_GET["nombre"]."') o";
+$admindesp->select_command = "SELECT * FROM (SELECT DISTINCT pcci.id, pcci.persona_id, p.nombre, p.apellido, pcci.centro_id, c.centro, pcci.instancia, pcci.fecha_creacion, pcci.fecha_fin FROM persona_centro_cargo_instancia pcci INNER JOIN persona p ON pcci.persona_id = p.id INNER JOIN centro c ON pcci.centro_id = c.id INNER JOIN instancia_despliegue d ON pcci.instancia = '".$_GET["nombre"]."') o";
 
 // this db table will be used for add,edit,delete
 $admindesp->table = "persona_centro_cargo_instancia";
@@ -167,7 +175,7 @@ $out = $admindesp->render("list1");?>
       </div>
   <div id="main">
         <div id="content_header">
-          <span id="content_title"></span>
+          <span id="content_title">LISTA DE PARTICIPANTES</span>
         </div>
         <div id="content">
         <?php echo $out; //Display JQGrid $out?>
@@ -181,50 +189,3 @@ $out = $admindesp->render("list1");?>
     </div>
 </body>
 </html>
-<script type="text/javascript">
-$(document).ready(function(){
-  
-  /*************************************MENU**************************************/
-  $('#menu_bar').each(function(){
-
-    // Bind the click event handler
-    $(this).delegate('a.father,a#btn_ver_perfil', 'click', function(e){
-      // Make the old tab inactive.
-      $active.removeClass('active');
-      $content.hide();
-      //$('#main_table tbody').empty();
-      //$(".agregar").removeAttr("disabled");
-
-      // Update the variables with the new link and content
-      $active = $(this);
-      $content = $($(this).attr('href'));
-      $importa = $(this).attr('href');
-
-      // Make the tab active.
-      $active.addClass('active');
-      // $content.show();
-      $("#content").load($(this).attr('href').substring(1)+".php");
-
-      $('#content_title').text($active.first().text());
-
-      if($(this)==$('#btn_ver_perfil')){
-        $('ul.roles').hide();
-        $('#saludo').css('background-color','#005597');
-      }
-
-      // Prevent the anchor's default click action
-      e.preventDefault();
-    });
-
-  });
-  $('#content').change(function(){
-    console.log($active.attr('href'));
-    if($active.attr('href')=="despliegue")
-      console.log($( ".clickDespliegue" ).find( "a" ));
-      // $(".clickDespliegue a").click(function() {
-      //   console.log($(this).attr("href").substring(11));
-      //   // $("#content").load("miembrosinstancia.php?nombre="+$(this).attr("href").substring(11));
-      // });
-  });
-});
-</script>

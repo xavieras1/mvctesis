@@ -70,6 +70,7 @@ $centros = new jqgrid();
 
 $centroGrid["autowidth"] = true; // expand grid to screen width
 $centroGrid["rowNum"] = 10;
+$centroGrid["multiselect"] = true;
 $centros->set_options($centroGrid);
 
 $centros->set_actions(array(	
@@ -77,7 +78,7 @@ $centros->set_actions(array(
 						"edit"=>true, // allow/disallow edit
 						"delete"=>true, // allow/disallow delete
 						"export"=>true, // show/hide export to excel option
-						"rowactions"=>true, // show/hide row wise edit/del/save option
+						"rowactions"=>false, // show/hide row wise edit/del/save option
 					) 
 				);
 
@@ -122,7 +123,7 @@ $out = $centros->render("list1");?>
       </div>
 	<div id="main">
         <div id="content_header">
-          <span id="content_title"></span>
+          <span id="content_title">CENTROS APOSTÓLICOS</span>
         </div>
         <div id="content">
           <?php echo $out; //Display JQGrid $out?>
