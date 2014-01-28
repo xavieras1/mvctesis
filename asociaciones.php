@@ -1,6 +1,6 @@
 <?php
 session_start();
-if(is_null($_SESSION["nivel_id"])) {
+if($_SESSION["nivel_id"]==0) {
   header('Location: index.php');
 }
 
